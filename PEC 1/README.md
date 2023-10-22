@@ -302,8 +302,8 @@ class Main {
     Student alice = new Student();
     Person bob = new Student();
 
-    alice.levelStudies;
-    ((Student)bob).levelStudies;
+    String levelAlice = alice.levelStudies;
+    String levelBob = ((Student)bob).levelStudies;
   }
 }
 ```

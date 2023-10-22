@@ -223,22 +223,22 @@ to said attribute?
 I am not sure I understood the question. If we want *levelStudies* to be accessible from both *Student* and *Person*, there is no direct answer. Here is a sample code in `java` that would allow both classes to access the attribute with some constraints explained below:
 
 ```java
-abstract class Person {                   // <1>
-  public String name;                     // <1>
-  public int age;                         // <1>
-}                                         // <1>
+abstract class Person {                           // <1>
+  public String name;                             // <1>
+  public int age;                                 // <1>
+}                                                 // <1>
 
-class Student extends Person {            // <2>
-  public String levelStudies;             // <2>
-}                                         // <2>
+class Student extends Person {                    // <2>
+  public String levelStudies;                     // <2>
+}                                                 // <2>
 
 class Main {
   public static void main(String[] args) {
-    Student alice = new Student();        // <3>
-    Person bob = new Student();           // <3>
+    Student alice = new Student();                // <3>
+    Person bob = new Student();                   // <3>
 
-    alice.levelStudies;                   // <4>
-    ((Student)bob).levelStudies;          // <4>
+    String levelAlice = alice.levelStudies;       // <4>
+    String levelBob = ((Student)bob).levelStudies;// <4>
   }
 }
 ```
