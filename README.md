@@ -1,2 +1,10 @@
 # Software Engineering Practices | UOC
-*Software Engineering Practices :wrench:*
+*Practices for the course Software Engineering 🔧*
+
+## PECs
+
+- [PEC 1](./PEC%201/README.md)
+
+## Practices
+
+🚧
