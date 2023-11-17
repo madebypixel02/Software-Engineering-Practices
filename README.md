@@ -3,8 +3,8 @@
 
 ## PECs
 
-- [PEC 1](./PEC%201/README.md)
+- [PEC 1](./PEC%201)
 
 ## Practices
 
-🚧
+- [PRAC 1](./PRAC%201)
