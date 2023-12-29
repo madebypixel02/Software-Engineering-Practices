@@ -8,3 +8,4 @@
 ## Practices
 
 - [PRAC 1](./PRAC%201)
+- [PRAC 2](./PRAC%202)

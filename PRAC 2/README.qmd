@@ -1,0 +1,122 @@
+---
+title: "PRAC 2"
+subtitle: "UML Analysis"
+author: Alejandro Pérez Bueno
+date: today
+date-format: "MMM DD, YYYY"
+toc: true
+toc-title: "Table of Contents"
+linkcolor: blue
+documentclass: report
+link-citations: true
+link-bibliography: true
+format:
+  gfm: default
+  pdf:
+    linestretch: 1.25
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhead[C]{UOC}
+          \fancyhead[R]{aperez-b@uoc.edu}
+          \fancyfoot{}
+          \fancyfoot[C]{\thepage}
+---
+
+{{< pagebreak >}}
+
+## Self-Responsibility Declaration
+
+> I understand that plagiarism, the use of AI or other generated content will imply that the
+delivered work will not be reviewed and it will be automatically assigned a grade of D.
+I certify that I have completed the PRAC2 individually and only with the help that the
+professors of this subject considered appropriate, according to the FAQs about plagiarism.
+
+{{< pagebreak >}}
+
+## Question 1
+
+::: {.callout-note}
+See @fig-question1
+:::
+
+## Question 2
+
+::: {.callout-note}
+See @fig-question2
+:::
+
+Other additional use cases:
+
+* Anonymous User: Search for races
+* Follower: View runner's progress
+* Coach: Create training plan for a specific runner
+* Organizer: Edit race details
+* Admin: Ban user from the platform
+
+## Question 3
+
+### a) UML class diagram
+
+::: {.callout-note}
+See @fig-question3
+:::
+
+### b) Keys, derived information & constraints
+
+::: {.callout-warning}
+Note, the attribute for the user should be passportNumber, rather than idNumber
+:::
+
+#### Keys
+
+* Race: primary key is a combination of name, date, and distanceUnit.
+* Runner: primary key is passportNumber.
+* Registration: primary key is bibNumber, and foreign keys are runner's passportNumber and race's name, date, and distanceUnit.
+* TimingPoint: primary key is a combination of race's name, date, distanceUnit, and distanceValue.
+* FinalResult: primary key is the same as the Registration's bibNumber.
+
+#### Derived Information
+
+* FinalResult's pace is calculated based on the race distance and the runner's total time.
+
+#### Constraints
+
+* Two Races with the same name, on the same date, and with the same defined distance cannot exist.
+* TimingPoints are only applicable to a Race, and it must be ensured that there are no two repeated points in the same race.
+* If a maximum number of participants is defined for a Race, the number of registrants cannot exceed it.
+* Every Race will always have at least two TimingPoints: the moment of the start and the finish line.
+* If a runner does not finish the race, the pace cannot be calculated and will be left without value.
+* The racer's passport consists of three characters followed by six digits.
+* distanceValue can only contain one character, which must be a valid currency (e.g. `€`, `$`, etc.).
+
+## Question 4
+
+### a) UML class diagram
+
+::: {.callout-note}
+See @fig-question4
+:::
+
+### b) Keys, derived information & constraints
+
+* User: The primary key is email. The textual integrity constraint is that email must be unique.
+* Coach: The primary key is the same as the User it represents, which is email.
+* Group: The primary key is the combination of the Coach's email and the name of the Group. The textual integrity constraint is that the name of the Group must be unique for each Coach.
+* Follower: There is no primary key for this class, as it serves as a many-to-many relationship between Users and Runners.
+* Organizer: The primary key is the same as the User it represents, which is email.
+
+## Annexes
+
+!["Sign up (Register) for a popular race" Activity diagram](./img/Sign_up_Register_for_a_popular_race.png){#fig-question1}
+
+![Race Use Case](./img/Race_Use_Case_Diagram.png){#fig-question2}
+
+![Race Class](./img/Race_Class_Diagram.png){#fig-question3}
+
+![Updated Race Class](./img/Race_Class_Diagram-2.png){#fig-question4}
