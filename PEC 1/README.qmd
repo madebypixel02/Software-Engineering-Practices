@@ -1,5 +1,5 @@
 ---
-title: "PEC"
+title: "PEC 1"
 subtitle: "Introduction to Software Engineering and Object Orientation"
 author: Alejandro Pérez Bueno
 date: today
