@@ -1,19 +1,21 @@
 # PRAC 1
 Alejandro Pérez Bueno
-Nov 17, 2023
+Apr 19, 2024
 
-- [Self-Responsibility Declaration](#self-responsibility-declaration)
-- [Question 1](#question-1)
-- [Question 2](#question-2)
-- [Question 3](#question-3)
-- [Question 4](#question-4)
-  - [a) One requirement conflict](#a-one-requirement-conflict)
-  - [b) Two requrements depend on each
-    other](#b-two-requrements-depend-on-each-other)
-- [Question 5](#question-5)
-- [Question 6](#question-6)
-  - [a) Five user-level use cases](#a-five-user-level-use-cases)
-  - [b) Two task-level use cases](#b-two-task-level-use-cases)
+-   [Self-Responsibility Declaration](#self-responsibility-declaration)
+-   [Question 1](#question-1)
+-   [Question 2](#question-2)
+-   [Question 3](#question-3)
+    -   [a) Conflict in requirements](#a-conflict-in-requirements)
+    -   [b) Solution to the conflict](#b-solution-to-the-conflict)
+-   [Question 4](#question-4)
+-   [Question 5](#question-5)
+-   [Question 6](#question-6)
+    -   [a) User-level use cases from
+        interviews](#a-user-level-use-cases-from-interviews)
+    -   [b) User-level use cases not mentioned in the
+        interviews](#b-user-level-use-cases-not-mentioned-in-the-interviews)
+    -   [c) Task-level use cases](#c-task-level-use-cases)
 
 
 
@@ -22,7 +24,7 @@ Nov 17, 2023
 > I understand that plagiarism, the use of AI or other generated content
 > will imply that the delivered work will not be reviewed and it will be
 > automatically assigned a grade of D. I certify that I have completed
-> the CAT1 individually and only with the help that the professors of
+> the PRAC1 individually and only with the help that the professors of
 > this subject considered appropriate, according to the FAQs about
 > plagiarism.
 
@@ -30,137 +32,166 @@ Nov 17, 2023
 
 ## Question 1
 
-|                                                                         Requirement                                                                         |                                                                                                            Description                                                                                                            |    Type    |                         Stakeholder                         |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------:|:-----------------------------------------------------------:|
-|            The new version must be more scalable and maintainable, so that adding new functionality or modifying the code is not a complex task.            |       The system must be designed in a way that it can accommodate new features and modifications easily without disrupting the existing functionality. The system should be scalable to support increasing users and data.       | Technical  |          Sara Marquez, CTO and Development Manager          |
-| The database should only be accessible through the internal network and all data consumption through the applications should be done through a backend API. | The system should ensure that the data is secure and only accessible to authorized personnel. The data flow between the applications and the database should be done through a secure backend API to prevent unauthorized access. |  Security  |                João Alves, software engineer                |
-|                   The application should support at least the English language, for runners of other nationalities to be able to use it.                    |             The system must be accessible to a wider audience, including non-native English speakers. The user interface and content should be available in English to ensure that it is understandable to all users.             | Linguistic | Marta López, regular runner, coach, and user of the service |
+Non-functional requirements:
+
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Requirement</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+<th style="text-align: center;"><strong>Type</strong></th>
+<th style="text-align: center;"><strong>Stakeholder</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>The project must be developed at
+least in all of Spain’s co-official languages, that is, in Catalan,
+Castilian, Basque, and Galician</em></td>
+<td style="text-align: center;">The application interface and
+functionalities must be available in multiple languages to cater to the
+diverse linguistic preferences of podcasters across Spain</td>
+<td style="text-align: center;">Cultural and policy</td>
+<td style="text-align: center;">Ivan, podcaster</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>We always work using an agile
+methodology, with two-week sprints during which the whole team can see
+the project’s progress and receive constant feedback</em></td>
+<td style="text-align: center;">The development process should follow an
+agile approach with short iterations and frequent feedback loops to
+ensure adaptability and responsiveness to changing needs</td>
+<td style="text-align: center;">Operational and environmental</td>
+<td style="text-align: center;">Alex, software engineer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><em>The most significant challenge for
+us will be managing very large files, so we’ll likely need to integrate
+the platform with storage services like Amazon Web Services’ S3 or
+equivalents</em></td>
+<td style="text-align: center;">The system must be capable of managing
+and storing large files, possibly through integration with external
+storage services like Amazon Web Services’ S3. This is necessary to
+handle the large audio files that will be uploaded by users</td>
+<td style="text-align: center;">Maintainability and support</td>
+<td style="text-align: center;">Alex, software engineer</td>
+</tr>
+</tbody>
+</table>
 
 ## Question 2
 
-These are user roles mentioned in the interviews:
+Functional requirements:
 
-1.  Founder and CEO of ChipRun
-2.  Head of the Customer Department
-3.  Race organizer and regular customer
-4.  Regular runner, coach, and user of the service
-5.  Software engineer and member of the application development team.
-6.  Follower of the runner
-7.  Coach of the runner
-8.  New (unregistered) user of the platform
-9.  Online payment in platform user
+1.  *As a **local radio director**, I want to enable or disable studios
+    for rental based on the existing models to manage the availability
+    of the studios.*
+2.  *As a **podcaster**, I want the platform to automatically upload and
+    integrate my podcast recordings with popular platforms like Spotify,
+    Google Podcasts, and Apple Podcasts to streamline the publishing
+    process and reach a wider audience.*
+3.  *As a **sound technician**, I want to confirm my availability for a
+    podcast recording session to manage my schedule effectively.*
+4.  *As a **software engineer**, I want to integrate the platform with
+    storage services like Amazon Web Services’ S3 to manage very large
+    files.*
 
 ## Question 3
 
-User stories to represent functional requirements:
+### a) Conflict in requirements
 
-1.  As a **coach**, I want to be able to **add comments and training
-    plans to the races of the runners I train** so that I can **analyze
-    their performance and help them improve their times**.
-2.  As a **regular runner**, I want to be able to view the **history of
-    the races I have participated in** and see my **final and partial
-    times, pace, distance of the race, number of runners who took part
-    and finishing position** so that I can **track my progress and set
-    new goals**.
-3.  As a **follower**, I want to be able to **follow the runner in
-    real-time and see their partial times** so that I can keep track of
-    how family menbers are doing on a specific race.
-4.  As an **online payment** in platform user, I want to be able to
-    **pay the registration fee through an online payment platform using
-    a credit card** so that I can efficiently **sign up for races**.
+-   **Stakeholders**: The software engineer and the podcaster.
+-   **Conflicting requirements**: The software engineer wants to use
+    Amazon Web Services’ S3 to manage very large files, while the
+    podcaster wants the platform to automatically upload and integrate
+    podcast recordings with popular platforms that upload podcasts. The
+    conflict appears because meeting both requirements may lead to
+    technical complexities such as:
+    -   Managing the upload and integration process across multiple
+        platforms.
+    -   Ensuring data consistency.
+    -   Dealing with potential file size limitations on the podcast
+        platforms.
+
+### b) Solution to the conflict
+
+To solve the conflict, we could use AWS S3 as the primary storage for
+all our podcast files due to its scalability/reliability, and we could
+develop an automated process that converts and compresses the podcast
+recordings into a format and size acceptable by most if not all podcast
+platforms, while maintaining good audio quality.
 
 ## Question 4
 
-### a) One requirement conflict
-
-The regular runner wants to see their race history, while the coach
-wants to add notes and training schedules to the runners’ races. The
-issue comes from the possibility that the runner does not want to
-divulge important information in the coach’s remarks and training
-schedules. Because they must monitor their trainees’ development and
-offer advice for improvement, coaches are interested in this need. The
-criteria interests the runner because it allows them to monitor their
-development and establish new objectives. The regular runner asserts
-that he has a right to see his own race history, while the coach claims
-that it is essential for the runner’s development.
-
-### b) Two requrements depend on each other
-
-On the one hand, organizers want to set up ways to allow runners to pay
-from their platforms online with a credit card, and on the other hand
-users of the platform need this payment system as well. Thus, the two
-requirements depend on one another in order to be completed, and if
-either organizers don’t set up the payment method or if runners do not
-pay online with a credit card, both requirements will be useless on
-their own.
+-   Ideologue of the project (Mónica)
+-   Local radio director (Hatim)
+-   Sound technician (Carolina)
+-   Podcaster (Ivan)
+-   Software engineer (Alex)
 
 ## Question 5
 
-- **Use case identifier**: Sign up for a popular race
-
-- **Principal actor**: Runner
-
-- **Supporting actors**: Organizer, Administrator
-
-- **Level**: User-level
-
-- **Scope**: System
-
-- **Main success scenario**:
-
-  1.  The runner logs in or signs up in the app.
-  2.  The runner reviews the available races on the app.
-  3.  The runner clicks on the registration option for the desired race.
-  4.  The runner inputs their personal data in the race registration
-      form.
-  5.  The runner selects the option *automatically enter saved data* in
-      case they want to use information provided for past races or
-      inputs the data manually if there is no previous data.
-  6.  The runner adds special requests if needed.
-  7.  The runner attaches any required documents, such as a information
-      on allergies or health conditions to consider.
-  8.  The runner pays the registration fee through an online payment
-      platform using a credit card.
-  9.  The registration is saved and pending confirmation by the
-      organizer.
-  10. The runner receives a confirmation email once the organizer has
-      validated the registration.
-
-- **Alternative scenarios**:
-
-  1.  In step 1, the runner does not remember their password. The runner
-      clicks an option to send an email with instructions to reset it.
-  2.  In step 7, the attached document format is not valid. The runner
-      is notified and must provide a valid PDF document before the
-      registration can be confirmed.
-  3.  In step 8, the payment fails. The runner is notified and must
-      provide a valid payment method before the registration can be
-      confirmed.
+-   **Use Case Identifier**: CU001
+-   **Main Actor**: Podcaster
+-   **Supporting Actors**: Studio Technician
+-   **Level**: User (user goals)
+-   **Scope**: Organization
+-   **Main Success Scenario**:
+    1.  The Podcaster logs into the studio booking system.
+    2.  The Podcaster selects the desired date and time slot for the
+        studio rental.
+    3.  The system checks the availability of the studio for the
+        selected date and time slot.
+    4.  The system confirms the availability of the studio.
+    5.  The Podcaster confirms the booking.
+    6.  The Studio Technician receives the booking request and confirms
+        the booking.
+-   **Alternative Scenarios**:
+    -   3a. If the studio is not available for the selected date and
+        time slot, the system informs the Podcaster about the
+        unavailability and prompts to select a different date or time
+        slot.
+    -   5a. If the Podcaster does not confirm the booking within a
+        certain time frame, the system cancels the booking process
+        automatically.
+    -   6a. If the Studio Technician is unable to confirm the booking
+        for any reason, the system informs the Podcaster about the
+        situation and cancels the booking.
 
 ## Question 6
 
-### a) Five user-level use cases
+### a) User-level use cases from interviews
 
-1.  Create a new race: The organizer creates a new race and adds all the
-    necessary information such as date, location and registration fees.
-2.  Modify a race: The organizer modifies a race that has already been
-    created, changing information mentioned in the last use case.
-3.  Delete a race: The administrator deletes a race that has been
-    created by an organizer but does not comply with the minimum quality
-    standards (contains false information, does not meet companies
-    standards, and so on).
-4.  Add a professional runner: The organizer adds a professional runner
-    to a race to increase its popularity and promote this runner.
-5.  Validate a registration document: The organizer validates a
-    registration document that has been sent by a runner during the
-    registration process.
+1.  **Book a Podcast Recording Studio**: *We’re looking to rent a studio
+    periodically, like subscribing to a pass*.
+2.  **Modify a Booking**: *Of course, on days we host a guest, we’ll
+    need to modify our booking to request a larger studio*.
+3.  **Cancel a Booking**: *…we might have to cancel, and in those cases,
+    I hope the cancellation fee is minimal*.
 
-### b) Two task-level use cases
+### b) User-level use cases not mentioned in the interviews
 
-1.  Use case for *Create a new race*: Add race categories: The organizer
-    adds different race categories to a race, such as age groups or
-    gender categories, and sets the registration fee for each category.
-2.  Use case for *Validate a registration document*: Verify the document
-    format: The organizer verifies that the attached registration
-    document is in a valid format (PDF), and notifies the runner if the
-    format is invalid.
+1.  **Manage Podcast Recordings**: This would involve actions like
+    accessing past recordings, downloading audio files, and potentially
+    editing metadata.
+2.  **Review and Rate Technicians**: Providing feedback on technicians
+    would help build a reputation system and assist other podcasters in
+    choosing suitable collaborators.
+
+### c) Task-level use cases
+
+> **Note**
+>
+> For the use case *Book a Podcast Recording Studio*.
+
+1.  **Select Recording Date and Time**: The podcaster chooses the
+    specific date and time slot they want to book the studio for.
+2.  **Choose Studio Size**: Based on the number of participants
+    expected, the podcaster selects the appropriate studio size to
+    accommodate everyone comfortably.
