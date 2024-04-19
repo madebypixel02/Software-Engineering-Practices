@@ -1,5 +1,5 @@
 ---
-title: "CAT 1"
+title: "PEC"
 subtitle: "Introduction to Software Engineering and Object Orientation"
 author: Alejandro Pérez Bueno
 date: today
