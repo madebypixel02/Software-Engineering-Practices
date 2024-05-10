@@ -4,6 +4,7 @@
 ## PECs
 
 - [PEC 1](./PEC%201)
+- [PEC 2](./PEC%202)
 
 ## Practices
 
