@@ -1,6 +1,6 @@
 ---
 title: "PRAC 2"
-subtitle: "UML Analysis"
+subtitle: "Software Engineering"
 author: Alejandro Pérez Bueno
 date: today
 date-format: "MMM DD, YYYY"
@@ -14,6 +14,8 @@ format:
   gfm: default
   pdf:
     linestretch: 1.25
+    code-overflow: wrap
+    keep-tex: true
     geometry:
       - top=30mm
       - left=20mm
@@ -26,6 +28,9 @@ format:
           \fancyhead[R]{aperez-b@uoc.edu}
           \fancyfoot{}
           \fancyfoot[C]{\thepage}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
 
 {{< pagebreak >}}
@@ -37,86 +42,274 @@ delivered work will not be reviewed and it will be automatically assigned a grad
 I certify that I have completed the PRAC2 individually and only with the help that the
 professors of this subject considered appropriate, according to the FAQs about plagiarism.
 
+:::{.callout-tip}
+All diagrams from this practice have been generated using [mermaid.js](https://mermaid.js.org/) or [plantuml](https://plantuml.com/).
+:::
+
 {{< pagebreak >}}
 
 ## Question 1
 
-::: {.callout-note}
-See @fig-question1
-:::
+![Activity Diagram](./img/q1.png)
 
 ## Question 2
 
-::: {.callout-note}
-See @fig-question2
-:::
+### Additional Use Case
 
-Other additional use cases:
+#### Global Administrator
 
-* Anonymous User: Search for races
-* Follower: View runner's progress
-* Coach: Create training plan for a specific runner
-* Organizer: Edit race details
-* Admin: Ban user from the platform
+**Use Case Identifier:** Define Minimum Rental Price for Studios
+
+**Main Actor:** Global Administrator
+
+**Supporting Actors:** None
+
+**Level:** Strategic
+
+**Scope:** Organization
+
+**Main Success Scenario:**
+
+1. The global administrator accesses the platform.
+2. The global administrator navigates to the pricing management section.
+3. The global administrator selects the option to define minimum rental prices.
+4. The global administrator inputs the minimum prices for different studio sizes.
+5. The global administrator saves the changes.
+6. The system confirms the changes.
+7. The use case ends.
+
+**Alternative Scenarios:**
+
+4a. The input prices are below the allowed minimum.
+4a1. The system displays an error message.
+4a2. The use case returns to step 4.
+
+#### Local Administrator
+
+**Use Case Identifier:** Manage Studio Availability
+
+**Main Actor:** Local Administrator
+
+**Supporting Actors:** None
+
+**Level:** Operational
+
+**Scope:** Local Radio Station
+
+**Main Success Scenario:**
+
+1. The local administrator logs into the platform.
+2. The local administrator navigates to the studio management section.
+3. The local administrator updates the availability of studios, including enabling or disabling specific studios.
+4. The local administrator updates the time slots for each studio.
+5. The local administrator applies a margin to the rental price.
+6. The local administrator saves the changes.
+7. The system confirms the updates.
+8. The use case ends.
+
+**Alternative Scenarios:**
+
+3a. No changes are made to the studio availability.
+
+3a1. The local administrator exits without saving.
+
+3a2. The use case ends.
+
+#### Technician
+
+**Use Case Identifier:** Register as an Independent Technician
+
+**Main Actor:** Technician
+
+**Supporting Actors:** None
+
+**Level:** Operational
+
+**Scope:** Platform
+
+**Main Success Scenario:**
+
+1. The technician accesses the platform.
+2. The technician navigates to the registration section.
+3. The technician fills out the registration form with personal details, qualifications, and availability.
+4. The technician submits the registration form.
+5. The system validates the information and confirms the registration.
+6. The use case ends.
+
+**Alternative Scenarios:**
+
+4a. The information is incomplete or incorrect.
+
+4a1. The system displays an error message.
+
+4a2. The use case returns to step 3.
+
+#### Anonymous User
+
+**Use Case Identifier:** Browse Available Studios
+
+**Main Actor:** Anonymous User
+
+**Supporting Actors:** None
+
+**Level:** Informational
+
+**Scope:** Platform
+
+**Main Success Scenario:**
+
+1. The anonymous user accesses the platform.
+2. The anonymous user navigates to the browse section.
+3. The anonymous user selects a date and time to check studio availability.
+4. The system displays available studios for the selected time.
+5. The use case ends.
+
+**Alternative Scenarios:**
+
+4a. No studios are available for the selected time.
+
+4a1. The system informs the user.
+
+4a2. The use case ends.
+
+### Use Case Diagrams
+
+![Use Case Diagram](./img/q2.png)
 
 ## Question 3
 
-### a) UML class diagram
+### Class Diagram
 
-::: {.callout-note}
-See @fig-question3
-:::
+```{mermaid}
+classDiagram
+    class Radio {
+        +String name
+        +String URL
+        +String InstagramAccount
+        +String phoneNumber
+        +Address location
+    }
+    class Address {
+        +String street
+        +String postalCode
+        +String city
+        +String latitude
+        +String longitude
+    }
+    class Frequency {
+        +String frequency
+        +String type
+        +String description
+    }
+    class StudioModel {
+        +String size
+        +String description
+        +Double rentalPrice
+    }
+    class Studio {
+        +String name
+        +String size
+        +Double priceMargin
+        +String technicalDescription
+        +Image[] images
+    }
+    class Image {
+        +String diskPath
+    }
+    class TimeSlot {
+        +String startTime
+        +String endTime
+        +String days
+    }
+    Radio "1" -- "1" Address : has
+    Radio "1" -- "*" Frequency : broadcasts
+    Radio "1" -- "*" Studio : owns
+    Studio "1" -- "1" StudioModel : based on
+    Studio "1" -- "*" Image : has
+    Studio "1" -- "*" TimeSlot : available at
+```
 
-### b) Keys, derived information & constraints
+### Explanation
 
-::: {.callout-warning}
-Note, the attribute for the user should be passportNumber, rather than idNumber
-:::
+1. **Keys:**
+   - **Radio**: The key for the Radio class is the `name` attribute, which is unique.
+   - **Studio**: The key for the Studio class is the `name` attribute, which is unique within the context of a Radio station.
 
-#### Keys
+2. **Textual Integrity Constraints:**
+   - **Radio**: Each Radio must have at least one associated Frequency, which is identified by its unique combination of frequency value, type (FM or AM), and description.
+   - **StudioModel**: Each StudioModel is uniquely identified by its `size`. No two models can refer to the same size.
+   - **Frequency**: The primary frequency for each Radio station is mandatory, ensuring that each Radio has at least one Frequency marked as primary.
 
-* Race: primary key is a combination of name, date, and distanceUnit.
-* Runner: primary key is passportNumber.
-* Registration: primary key is bibNumber, and foreign keys are runner's passportNumber and race's name, date, and distanceUnit.
-* TimingPoint: primary key is a combination of race's name, date, distanceUnit, and distanceValue.
-* FinalResult: primary key is the same as the Registration's bibNumber.
-
-#### Derived Information
-
-* FinalResult's pace is calculated based on the race distance and the runner's total time.
-
-#### Constraints
-
-* Two Races with the same name, on the same date, and with the same defined distance cannot exist.
-* TimingPoints are only applicable to a Race, and it must be ensured that there are no two repeated points in the same race.
-* If a maximum number of participants is defined for a Race, the number of registrants cannot exceed it.
-* Every Race will always have at least two TimingPoints: the moment of the start and the finish line.
-* If a runner does not finish the race, the pace cannot be calculated and will be left without value.
-* The racer's passport consists of three characters followed by six digits.
-* distanceValue can only contain one character, which must be a valid currency (e.g. `€`, `$`, etc.).
+3. **Derived Information:**
+   - **Studio Final Price**: The final price of a Studio is derived from the base price defined in the StudioModel plus an optional price margin specified by the Radio station when defining a Studio. This allows for the calculation of the final price which is stored and used for transactions.
 
 ## Question 4
 
-### a) UML class diagram
+### Class Diagram
 
-::: {.callout-note}
-See @fig-question4
-:::
+![Class Diagram](./img/q4.png)
 
-### b) Keys, derived information & constraints
+### Explanation
 
-* User: The primary key is email. The textual integrity constraint is that email must be unique.
-* Coach: The primary key is the same as the User it represents, which is email.
-* Group: The primary key is the combination of the Coach's email and the name of the Group. The textual integrity constraint is that the name of the Group must be unique for each Coach.
-* Follower: There is no primary key for this class, as it serves as a many-to-many relationship between Users and Runners.
-* Organizer: The primary key is the same as the User it represents, which is email.
+- **Keys:**
+  - **User**: The `email` attribute serves as the unique identifier.
+  - **Studio**: The `name` attribute can be considered unique within the context of a radio station.
+  - **Rental**: A composite key could be formed with `date`, `startTime`, and `Studio` as no two rentals can start at the same time in the same studio.
 
-## Annexes
+- **Integrity Constraints:**
+  - A Technician must be associated with at least one RadioStation.
+  - A Rental must have a valid Podcaster, Technician, and Studio associated with it.
+  - The `totalPrice` in Rental is derived from `Studio.rentalHourlyRate`, `Technician.hourlyRate`, and `duration`.
 
-!["Sign up (Register) for a popular race" Activity diagram](./img/Sign_up_Register_for_a_popular_race.png){#fig-question1}
+- **Derived Information:**
+  - **Rental.totalPrice**: Derived from multiplying the sum of `Studio.rentalHourlyRate` and `Technician.hourlyRate` by the `duration` of the rental.
 
-![Race Use Case](./img/Race_Use_Case_Diagram.png){#fig-question2}
+## Question 5
 
-![Race Class](./img/Race_Class_Diagram.png){#fig-question3}
+### Class Diagram
 
-![Updated Race Class](./img/Race_Class_Diagram-2.png){#fig-question4}
+```{mermaid}
+classDiagram
+    class PodcastRecording {
+        +String filePath
+        +boolean uploadFlag
+        +Tag[] tags
+    }
+    class Tag {
+        +String type
+        +String value
+        +Date modificationDate
+    }
+    class Platform {
+        +String name
+        +String logo
+        +Credentials credentials
+    }
+    class UploadEvent {
+        +Date uploadDate
+        +boolean successFlag
+        +String responseMessage
+    }
+    class Credentials {
+        +String username
+        +String password
+    }
+    PodcastRecording "1" -- "*" Tag : has
+    PodcastRecording "*" -- "*" Platform : uploads to
+    PodcastRecording "1" -- "*" UploadEvent : triggers
+    Platform "1" -- "1" Credentials : uses
+```
+
+### Explanation
+
+- **Keys:**
+  - **PodcastRecording**: The `filePath` attribute can serve as a unique identifier.
+  - **Platform**: The `name` attribute is unique.
+  - **Tag**: A composite key of `type` and `PodcastRecording` could uniquely identify a tag, ensuring that there can only be one tag of each type per recording.
+
+- **Integrity Constraints:**
+  - Each podcast recording must have exactly one tag of type "title" and can optionally have one of type "description".
+  - Each platform must have unique access credentials.
+
+- **Derived Information:**
+  - **UploadEvent.successFlag**: This flag is derived based on the response from the platform after attempting to upload a podcast recording. If the platform responds positively, the flag is set to true; otherwise, it is set to false.
