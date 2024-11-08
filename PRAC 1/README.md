@@ -1,21 +1,21 @@
 # PRAC 1
 Alejandro Pérez Bueno
-Apr 19, 2024
+Nov 08, 2024
 
 -   [Self-Responsibility Declaration](#self-responsibility-declaration)
 -   [Question 1](#question-1)
+    -   [Non-Functional Requirement 1](#non-functional-requirement-1)
+    -   [Non-Functional Requirement 2](#non-functional-requirement-2)
+    -   [Non-Functional Requirement 3](#non-functional-requirement-3)
 -   [Question 2](#question-2)
 -   [Question 3](#question-3)
-    -   [a) Conflict in requirements](#a-conflict-in-requirements)
-    -   [b) Solution to the conflict](#b-solution-to-the-conflict)
+-   [Conflicting and Dependent
+    Requirements](#conflicting-and-dependent-requirements)
 -   [Question 4](#question-4)
 -   [Question 5](#question-5)
+    -   [Use Case: Register a Community
+        Fee](#use-case-register-a-community-fee)
 -   [Question 6](#question-6)
-    -   [a) User-level use cases from
-        interviews](#a-user-level-use-cases-from-interviews)
-    -   [b) User-level use cases not mentioned in the
-        interviews](#b-user-level-use-cases-not-mentioned-in-the-interviews)
-    -   [c) Task-level use cases](#c-task-level-use-cases)
 
 
 
@@ -32,166 +32,303 @@ Apr 19, 2024
 
 ## Question 1
 
-Non-functional requirements:
+### Non-Functional Requirement 1
 
 <table>
 <colgroup>
-<col style="width: 28%" />
-<col style="width: 28%" />
-<col style="width: 15%" />
-<col style="width: 28%" />
+<col style="width: 8%" />
+<col style="width: 91%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><strong>Requirement</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-<th style="text-align: center;"><strong>Type</strong></th>
-<th style="text-align: center;"><strong>Stakeholder</strong></th>
+<th style="text-align: left;"><strong>Category</strong></th>
+<th style="text-align: left;"><strong>Details</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><em>The project must be developed at
-least in all of Spain’s co-official languages, that is, in Catalan,
-Castilian, Basque, and Galician</em></td>
-<td style="text-align: center;">The application interface and
-functionalities must be available in multiple languages to cater to the
-diverse linguistic preferences of podcasters across Spain</td>
-<td style="text-align: center;">Cultural and policy</td>
-<td style="text-align: center;">Ivan, podcaster</td>
+<td style="text-align: left;">Requirement</td>
+<td style="text-align: left;">“I believe that ensuring 99.9%
+availability is sufficient.”</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><em>We always work using an agile
-methodology, with two-week sprints during which the whole team can see
-the project’s progress and receive constant feedback</em></td>
-<td style="text-align: center;">The development process should follow an
-agile approach with short iterations and frequent feedback loops to
-ensure adaptability and responsiveness to changing needs</td>
-<td style="text-align: center;">Operational and environmental</td>
-<td style="text-align: center;">Alex, software engineer</td>
+<td style="text-align: left;">Description</td>
+<td style="text-align: left;">The system should be available to users
+99.9% of the time. This means there can be a total downtime of no more
+than 8 hours and 45 minutes per year.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><em>The most significant challenge for
-us will be managing very large files, so we’ll likely need to integrate
-the platform with storage services like Amazon Web Services’ S3 or
-equivalents</em></td>
-<td style="text-align: center;">The system must be capable of managing
-and storing large files, possibly through integration with external
-storage services like Amazon Web Services’ S3. This is necessary to
-handle the large audio files that will be uploaded by users</td>
-<td style="text-align: center;">Maintainability and support</td>
-<td style="text-align: center;">Alex, software engineer</td>
+<td style="text-align: left;">Type</td>
+<td style="text-align: left;"><strong>Availability</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stakeholder</td>
+<td style="text-align: left;"><strong>Salma</strong> (Software Engineer
+responsible for the development of the application)</td>
+</tr>
+</tbody>
+</table>
+
+### Non-Functional Requirement 2
+
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Category</strong></th>
+<th style="text-align: left;"><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Requirement</td>
+<td style="text-align: left;">“Considering the project’s
+characteristics, we will develop the application using a cross-platform
+framework, allowing us to run the application on both iOS and Android
+with the same code, thus speeding up development and simplifying
+maintenance.”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Description</td>
+<td style="text-align: left;">The application should be developed using
+a cross-platform framework so that the application can be deployed on
+both iOS and Android using the same codebase. This will reduce
+development time and maintenance efforts.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Type</td>
+<td
+style="text-align: left;"><strong>Portability/Compatibility</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stakeholder</td>
+<td style="text-align: left;"><strong>Salma</strong> (Software Engineer
+responsible for the development of the application)</td>
+</tr>
+</tbody>
+</table>
+
+### Non-Functional Requirement 3
+
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Category</strong></th>
+<th style="text-align: left;"><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Requirement</td>
+<td style="text-align: left;">“the application must comply with the WCAG
+2.2 standard”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Description</td>
+<td style="text-align: left;">The system should be accessible to users
+with disabilities. The Web Content Accessibility Guidelines (WCAG) 2.2
+define how to make web content more accessible to people with
+disabilities.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Type</td>
+<td style="text-align: left;"><strong>Accessibility</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stakeholder</td>
+<td style="text-align: left;"><strong>Rasheeda</strong> (Business Angel
+and financial manager of the project)</td>
 </tr>
 </tbody>
 </table>
 
 ## Question 2
 
-Functional requirements:
+Here are the user stories:
 
-1.  *As a **local radio director**, I want to enable or disable studios
-    for rental based on the existing models to manage the availability
-    of the studios.*
-2.  *As a **podcaster**, I want the platform to automatically upload and
-    integrate my podcast recordings with popular platforms like Spotify,
-    Google Podcasts, and Apple Podcasts to streamline the publishing
-    process and reach a wider audience.*
-3.  *As a **sound technician**, I want to confirm my availability for a
-    podcast recording session to manage my schedule effectively.*
-4.  *As a **software engineer**, I want to integrate the platform with
-    storage services like Amazon Web Services’ S3 to manage very large
-    files.*
+-   As a **resident**, I want to be able to **view a calendar of
+    events** so that I can **stay informed about upcoming community
+    meetings, inspections, and other important dates.**
+-   As a **resident**, I want to be able to **cast my vote in community
+    polls** so that I can **have a say in decisions that affect my
+    community**.
+-   As a **president**, I want to be able to **create and manage
+    community polls** so that I can **gather feedback and make decisions
+    based on the input of residents**.
+-   As a **manager**, I want to be able to **manage community fees and
+    track payment status** so that I can **ensure that the community is
+    financially stable.**
 
 ## Question 3
 
-### a) Conflict in requirements
+## Conflicting and Dependent Requirements
 
--   **Stakeholders**: The software engineer and the podcaster.
--   **Conflicting requirements**: The software engineer wants to use
-    Amazon Web Services’ S3 to manage very large files, while the
-    podcaster wants the platform to automatically upload and integrate
-    podcast recordings with popular platforms that upload podcasts. The
-    conflict appears because meeting both requirements may lead to
-    technical complexities such as:
-    -   Managing the upload and integration process across multiple
-        platforms.
-    -   Ensuring data consistency.
-    -   Dealing with potential file size limitations on the podcast
-        platforms.
+**a) Conflicting Requirements:**
 
-### b) Solution to the conflict
+-   **Stakeholders:** Rasheeda (Business Angel) and Anonymous Residents
+-   **Conflicting Requirements:** Adding photos to advertisements
+    vs. Setting advertisement expiration dates
+    -   **Rasheeda** wants the application to be accessible to people
+        with disabilities and, therefore, requests that the application
+        comply with the WCAG 2.2 standard. WCAG 2.2 includes success
+        criterion 2.2.1: Timing Adjustable, which requires that users be
+        able to disable, adjust, or extend time limits. \[outside
+        source\] This means that if residents are allowed to set
+        expiration dates for their advertisements, they must also be
+        able to disable those expiration dates.
+    -   **Anonymous residents** might want to include photos in their
+        advertisements. However, if the system allows photos, it would
+        become more difficult to automatically moderate the content of
+        the advertisements to ensure they do not violate the WCAG
+        guidelines. For instance, a photo could contain flashing images
+        or text that is illegible to people with certain visual
+        impairments. As a result, setting expiration dates on
+        advertisements with photos could conflict with the accessibility
+        requirements proposed by Rasheeda.
 
-To solve the conflict, we could use AWS S3 as the primary storage for
-all our podcast files due to its scalability/reliability, and we could
-develop an automated process that converts and compresses the podcast
-recordings into a format and size acceptable by most if not all podcast
-platforms, while maintaining good audio quality.
+**b) Dependent Requirements:**
+
+-   **Stakeholders:** Anonymous residents and Julián (professional
+    property manager)
+-   **Requirements:** Registering as a resident and managing community
+    fees.
+    -   **Anonymous residents** should be able to register in the
+        application to become part of the community.
+    -   **Julián** suggests a feature for managing community fee
+        payments.
+    -   The ability to manage community fees is dependent on users being
+        registered residents. Only registered residents should be able
+        to view and pay their community fees. Therefore, the “manage
+        community fees” requirement relies on the “register as a
+        resident” requirement.
 
 ## Question 4
 
--   Ideologue of the project (Mónica)
--   Local radio director (Hatim)
--   Sound technician (Carolina)
--   Podcaster (Ivan)
--   Software engineer (Alex)
+Here are the user roles that exist in the application based on the
+interviews:
+
+-   **President**
+-   **Resident**
+-   **Manager**
+-   **Project Executives**
 
 ## Question 5
 
--   **Use Case Identifier**: CU001
--   **Main Actor**: Podcaster
--   **Supporting Actors**: Studio Technician
--   **Level**: User (user goals)
--   **Scope**: Organization
--   **Main Success Scenario**:
-    1.  The Podcaster logs into the studio booking system.
-    2.  The Podcaster selects the desired date and time slot for the
-        studio rental.
-    3.  The system checks the availability of the studio for the
-        selected date and time slot.
-    4.  The system confirms the availability of the studio.
-    5.  The Podcaster confirms the booking.
-    6.  The Studio Technician receives the booking request and confirms
-        the booking.
--   **Alternative Scenarios**:
-    -   3a. If the studio is not available for the selected date and
-        time slot, the system informs the Podcaster about the
-        unavailability and prompts to select a different date or time
-        slot.
-    -   5a. If the Podcaster does not confirm the booking within a
-        certain time frame, the system cancels the booking process
-        automatically.
-    -   6a. If the Studio Technician is unable to confirm the booking
-        for any reason, the system informs the Podcaster about the
-        situation and cancels the booking.
+Let’s describe the use case “Register a Community Fee in the
+Application” based on the provided interviews. The Property Manager,
+Julián, outlines how this process works when an association is managed
+by a professional property manager.
+
+### Use Case: Register a Community Fee
+
+-   **Use Case Identifier:** UC001
+
+-   **Actor Principal:** Property Manager
+
+-   **Supporting Actors:** President, Resident
+
+-   **Level:** User Goal
+
+-   **Scope:** Organization
+
+-   **Main Stage of Success:**
+
+    1.  The Property Manager initiates the fee registration process.
+    2.  The Property Manager enters the fee amount and payment
+        frequency.
+        -   If the fee is not the same for everyone, the amount is
+            entered individually for each resident.
+    3.  The Property Manager submits the fee information for validation.
+    4.  The President reviews the fee amounts and frequency.
+    5.  The President approves the fee.
+    6.  The system sends a notification to each resident, prompting them
+        to select a payment method.
+    7.  Residents select their preferred payment method.
+        -   If direct debit is selected, residents enter their bank
+            account information.
+        -   If Apple/Google Pay is selected, residents choose their
+            preferred card.
+    8.  The Property Manager validates that all residents have entered
+        their payment information correctly.
+    9.  The fee registration is finalized.
+
+-   **Alternative Scenarios:**
+
+    1.  **President Rejects Fee:** If the President finds a discrepancy
+        in the fee amount or frequency during their review, they reject
+        the fee and provide a reason for the rejection. The Property
+        Manager must then modify the fee information based on the
+        President’s feedback and resubmit it for approval.
+    2.  **Resident Enters Incorrect Bank Information:** If a resident
+        selects direct debit and enters an incorrect bank account
+        number, the system displays an error message due to invalid
+        check digits. The resident must correct the bank account
+        information before proceeding.
+    3.  **Resident Fails to Enter Payment Information:** If a resident
+        does not enter their payment information within a specified
+        timeframe, the Property Manager is alerted. The Property Manager
+        then sends a message to the affected resident(s), reminding them
+        to provide the required payment details.
+
+This use case description provides a comprehensive overview of the fee
+registration process from an organizational level. However, it’s
+important to note that the sources do not explicitly state how the
+President is notified of the submitted fee or how the Property Manager
+is alerted if residents do not enter payment information. These details
+would need to be further defined in a real-world scenario.
 
 ## Question 6
 
-### a) User-level use cases from interviews
+Here are some use cases based on the homeowner’s association application
+interviews:
 
-1.  **Book a Podcast Recording Studio**: *We’re looking to rent a studio
-    periodically, like subscribing to a pass*.
-2.  **Modify a Booking**: *Of course, on days we host a guest, we’ll
-    need to modify our booking to request a larger studio*.
-3.  **Cancel a Booking**: *…we might have to cancel, and in those cases,
-    I hope the cancellation fee is minimal*.
+**a) User-level use cases where the President is the main actor:**
 
-### b) User-level use cases not mentioned in the interviews
+-   **Create a calendar event:** The President schedules events in the
+    community calendar, including meetings, inspections, and other
+    relevant dates.
+-   **Initiate a community vote:** The president starts a voting process
+    for decisions that affect the community, allowing residents to
+    participate and have a say.
 
-1.  **Manage Podcast Recordings**: This would involve actions like
-    accessing past recordings, downloading audio files, and potentially
-    editing metadata.
-2.  **Review and Rate Technicians**: Providing feedback on technicians
-    would help build a reputation system and assist other podcasters in
-    choosing suitable collaborators.
+**b) User-level use cases where the Neighbor is the main actor:**
 
-### c) Task-level use cases
+-   **View the community calendar:** The Neighbor accesses the calendar
+    to stay informed about upcoming events and important dates within
+    the association.
+-   **Vote in a community poll:** The Neighbor participates in active
+    polls to contribute to decision-making processes within the
+    association.
 
-> **Note**
->
-> For the use case *Book a Podcast Recording Studio*.
+**c) Task-level use cases derived from selected user-level use cases:**
 
-1.  **Select Recording Date and Time**: The podcaster chooses the
-    specific date and time slot they want to book the studio for.
-2.  **Choose Studio Size**: Based on the number of participants
-    expected, the podcaster selects the appropriate studio size to
-    accommodate everyone comfortably.
+**For the President:**
+
+-   **User-level use case:** Initiate a community vote
+    -   **Task-level use case 1:** **Define voting parameters.** The
+        President sets the start and end dates of the vote, specifies
+        the eligible voters, and sets up the voting options.
+    -   **Task-level use case 2:** **Publish the vote.** The President
+        makes the vote accessible to eligible residents in the
+        application.
+
+**For the Neighbor:**
+
+-   **User-level use case:** View the community calendar
+    -   **Task-level use case 1:** **Filter calendar events.** The
+        Neighbor chooses to view events based on categories like
+        meetings, maintenance, or social gatherings.
+    -   **Task-level use case 2:** **Set event reminders.** The Neighbor
+        subscribes to receive notifications or reminders for specific
+        events.
+
+These task-level use cases break down the broader user-level use cases
+into more specific and manageable actions, providing a more detailed
+view of how users will interact with the application.
