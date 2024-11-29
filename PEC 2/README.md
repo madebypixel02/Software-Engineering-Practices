@@ -1,188 +1,325 @@
 # CAT 2
 Alejandro Pérez Bueno
-May 10, 2024
+Nov 29, 2024
 
--   [Self-Responsibility Declaration](#self-responsibility-declaration)
--   [Question 1](#question-1)
-    -   [1) `RealEstateProperty`](#realestateproperty)
-    -   [2) `FitnessExercise`](#fitnessexercise)
-    -   [3) Swimlanes diagram](#swimlanes-diagram)
--   [Question 2](#question-2)
--   [Question 3](#question-3)
--   [Question 4](#question-4)
-    -   [a)](#a)
-    -   [b)](#b)
--   [Question 5](#question-5)
--   [Question 6](#question-6)
-    -   [a)](#a-1)
-    -   [b)](#b-1)
+- [Self-Responsibility Declaration](#self-responsibility-declaration)
+- [Question 1](#question-1)
+  - [Section 1](#section-1)
+  - [Section 2](#section-2)
+  - [Section 3](#section-3)
+- [Question 2](#question-2)
+- [Question 3](#question-3)
+- [Question 4](#question-4)
+  - [Section A: Player, Character, and Kart
+    Information](#section-a-player-character-and-kart-information)
+  - [Section B: Track and Tournament
+    Information](#section-b-track-and-tournament-information)
+- [Question 5](#question-5)
+  - [Explanation:](#explanation)
+- [Question 6](#question-6)
+  - [Explanation and Constraints:](#explanation-and-constraints)
+  - [Key Constraints and Derived
+    Information:](#key-constraints-and-derived-information)
 
 
 
 ## Self-Responsibility Declaration
 
-> I understand that plagiarism, the use of AI or other generated content
-> will imply that the delivered work will not be reviewed and it will be
-> automatically assigned a grade of D. I certify that I have completed
-> the CAT2 individually and only with the help that the professors of
-> this subject considered appropriate, according to the FAQs about
-> plagiarism.
+> I certify that I have completed CAT2 entirely individually and only
+> with the help deemed appropriate by the teaching staff of this subject
+> according to the FAQs about plagiarism. I understand that unoriginal
+> work and/or the use of generative AI will mean that the submitted
+> activity will not be corrected, and a grade of D will automatically be
+> assigned.
 
 
 
 ## Question 1
 
-### 1) `RealEstateProperty`
+### Section 1
 
-<figure>
-<img src="./img/ex1-1.png" alt="Class Diagram" />
-<figcaption aria-hidden="true">Class Diagram</figcaption>
-</figure>
+![Class Diagram](./img/ex1-1.png)
 
-### 2) `FitnessExercise`
+### Section 2
 
-<figure>
-<img src="./img/ex1-2.png" alt="Class Diagram" />
-<figcaption aria-hidden="true">Class Diagram</figcaption>
-</figure>
+![Class Diagram](./img/ex1-2.png)
 
-### 3) Swimlanes diagram
+### Section 3
 
-<figure>
-<img src="./img/ex1-3.png" alt="Activity Diagram" />
-<figcaption aria-hidden="true">Activity Diagram</figcaption>
-</figure>
+![Class Diagram](./img/ex1-3.png)
 
 
 
+> [!CAUTION]
+>
+> ### Disclaimer
+>
+> Due to problems installing [Visual
+> Paradigm](https://www.visual-paradigm.com/) on *Linux*, I will add
+> diagrams drawn with *mermaid.js* or *PlantUML* moving on.
+
 ## Question 2
 
-> **Note**
->
-> All diagrams have been created with [PlantUML](https://plantuml.com/),
-> a tool used to generate UML diagrams from plaintext.
+Here is the UML Class diagram:
 
-For this exercise, here is the code that generates the class diagram:
+``` mermaid
+classDiagram
+    class Police {
+        code: String
+        name: String
+        lastName: String[2]
+        dateOfBirth: Date
+    }
 
-``` plantuml
-@startuml
+    class Inspector {
+        promotionDate: Date
+    }
+    Police <|-- Inspector
 
-abstract class HealthCareWorker {
-   + name
-   + lastName
-   + ID
-   + dateOfBirth
-   + phoneNumber: List
-}
+    class Station {
+        name: String
+        location: String
+    }
 
-class Doctor extends HealthCareWorker {
-   + isResident: Boolean
-}
+    class Case {
+        code: String
+        keyName: String
+        startDate: Date
+        endDate: Date
+    }
 
-class Nurse extends HealthCareWorker {
-   + yearsExperience: Int
-}
-
-Nurse "0..1" -- "*" Nurse: Supervises
-
-
-class Specialty {
-   + name
-   + onCall: Boolean
-}
-
-class HealthCareCenter {
-   + name
-   + address
-   + floor?: String
-}
-
-Doctor "SpecialistIn" -- "Specializes In" Specialty
-HealthCareWorker "LocatedIn" -- "1" HealthCareCenter
-
-@enduml
+    Police "1" -- "*" Case : AssignedTo
+    Police "1" -- "1" Station : WorksAt
+    Inspector "1" -- "*" Case : IsResponsibleFor
+    Case "*" -- "*" Case : RelatedTo
 ```
-
-<figure>
-<img src="./img/ex2.png" alt="Class Diagram" />
-<figcaption aria-hidden="true">Class Diagram</figcaption>
-</figure>
 
 ## Question 3
 
-<figure>
-<img src="./img/ex3.png" alt="Use Case Diagram" />
-<figcaption aria-hidden="true">Use Case Diagram</figcaption>
-</figure>
+![Use case diagram](./img/ex3.png)
+
+- **Actors:**
+  - **Player:** This actor represents anyone who has downloaded the
+    game.
+  - **Registered Player:** This actor represents a subset of players who
+    have created an account, allowing access to online features.
+- **Use Cases:**
+  - **Create Profile:** Allows players to create profiles to store basic
+    information and game preferences.
+  - **Select Favorite Kart:** Allows players to choose their preferred
+    kart for races.
+  - **Participate in Single Offline Race:** Allows players to race
+    against AI opponents on a single track.
+  - **Participate in Offline Tournament:** Allows players to engage in a
+    tournament against AI opponents across four pre-selected tracks.
+  - **Participate in Multiplayer Race:** Enables registered players to
+    compete against other players online.
+  - **Participate in Online Tournament:** Allows registered players to
+    take part in tournaments with other players online.
+  - **Check Global Ranking:** Allows registered players to see their
+    current standing on the global ELO-based ranking system.
+- **Relationships:** The lines connecting actors to use cases illustrate
+  that the actor can execute those specific actions within the game.
+
+> [!NOTE]
+>
+> This diagram is focused on identifying user-level use cases, leaving
+> out lower-level details like “Select Track” or “Choose Opponent”. It
+> also avoids depicting any inclusion or extension relationships between
+> use cases.
 
 ## Question 4
 
-### a)
+### Section A: Player, Character, and Kart Information
 
-<figure>
-<img src="./img/ex4.png" alt="Class Diagram" />
-<figcaption aria-hidden="true">Class Diagram</figcaption>
-</figure>
+``` mermaid
+classDiagram
+    class Player {
+        +String playerId
+        +Date birthdate
+        +Kart favoriteKart
+        +unlockKart(Kart, DateTime)
+        +markFavoriteKart(Kart)
+    }
+    
+    class RegisteredPlayer {
+        +String email
+        +String alias
+        +String name
+        +String country
+    }
+    
+    class Character {
+        +String name
+        +String avatar
+    }
+    
+    class Kart {
+        +String name
+        +float maxSpeed
+        +float acceleration
+    }
+    
+    Player "1" --o "0..*" Kart : unlockedKarts
+    Player "1" --o "0..1" Kart : favoriteKart
+    RegisteredPlayer --|> Player
+    Character "1" --o "1..*" Kart : availableKarts
+```
 
-### b)
+#### Restrictions, integrity contraints and other derived info:
 
--   Restrictions:
-    -   Usernames and email addresses are distinct for every user,
-        excluding repetitiveness.
-    -   Each term retains a unique name, avoiding any duplication.
--   Integrity constraints:
-    -   A profile image, once linked to a user, remains exclusive to
-        that user.
-    -   Every piece of content has a single author, preventing multiple
-        authorship.
-    -   Only after a piece of content is created can comments be made,
-        ensuring chronological integrity.
-    -   Each piece of content is associated with at least one category,
-        and can have many, or no tags, ensuring the flexibility of
-        content association.
--   Other considerations:
-    -   Content status is inferred from the creation and publication
-        dates. If not published, content is either in Draft or
-        PendingReview status. If published, status is Series.
-    -   Replies to comments are tracked from associated comments with
-        content. Any reply is registered under the original comment.
-    -   The attached terms with content are derived from terms assigned
-        to the same.
+- **Player Class:**
+  - Stores `playerId` and `birthdate`.
+  - Has a method `unlockKart(Kart, DateTime)` to record when a kart is
+    unlocked.
+  - Has a method `markFavoriteKart(Kart)` to set a favorite kart, which
+    must be unlocked first.
+- **RegisteredPlayer Class:**
+  - Inherits from `Player`.
+  - Stores additional information: `email`, `alias`, `name`, and
+    `country`.
+  - **Constraint:** No two `RegisteredPlayer` instances can have the
+    same `email`.
+- **Character Class:**
+  - Each character has a unique `name` and `avatar`.
+  - Each character is associated with one or more karts.
+- **Kart Class:**
+  - Each kart has a unique `name`, `maxSpeed`, and `acceleration`.
+  - A kart is linked to exactly one character.
+- **Relationships:**
+  - A `Player` can have multiple `unlockedKarts` and one `favoriteKart`.
+  - A `Character` can have multiple `availableKarts`.
+
+### Section B: Track and Tournament Information
+
+``` mermaid
+classDiagram
+    class Track {
+        +String name
+        +float distance
+        +String difficulty
+    }
+    
+    class Tournament {
+        +String name
+        +String difficulty
+        +Tournament previousTournament
+    }
+    
+    Track "1" --o "0..*" Tournament : partOf
+    Tournament "1" --o "0..4" Track : consistsOf
+    Tournament "0..1" --o "0..*" Tournament : nextTournaments
+```
+
+#### Restrictions, integrity contraints and other derived info:
+
+- **Track Class:**
+  - Stores `name`, `distance`, and `difficulty` (easy, medium, high,
+    very high).
+- **Tournament Class:**
+  - Stores `name` and `difficulty`.
+  - **Derived Information:** The `difficulty` of a tournament is
+    determined by the highest difficulty of its tracks.
+  - Can have a `previousTournament` and multiple `nextTournaments` to
+    recommend an order of play.
+- **Relationships:**
+  - A `Track` can be part of multiple `Tournaments`.
+  - A `Tournament` consists of exactly four `Tracks`.
+  - A `Tournament` can have a recommended `previousTournament` and
+    multiple `nextTournaments`.
 
 ## Question 5
 
-<figure>
-<img src="./img/ex5.png" alt="Activity Diagram" />
-<figcaption aria-hidden="true">Activity Diagram</figcaption>
-</figure>
+![Activity diagram](./img/ex5.png)
+
+### Explanation:
+
+- **User Swimlane:**
+  - **Access Contact Form:** The user accesses the contact form on the
+    website.
+  - **Fill Out Form:** The user fills out the form with the necessary
+    details.
+  - **Submit Form:** The user submits the form, initiating the process.
+  - **Provide Additional Information:** If requested, the user provides
+    additional information to customer support.
+- **Customer Support Swimlane:**
+  - **Receive Request:** Customer support receives the request from the
+    user.
+  - **Analyze Request:** Customer support analyzes the request to
+    determine the next steps.
+  - **Can Resolve Issue?:** Decision point to check if customer support
+    can resolve the issue.
+    - **Yes:** If the issue can be resolved, customer support sends a
+      response to the player, ending the process.
+    - **No:** If the issue cannot be resolved, further steps are taken.
+  - **Need More Information?:** Decision point to check if more
+    information is needed.
+    - **Yes:** Customer support requests additional information from the
+      user.
+    - **No:** The request is forwarded to the technical team.
+  - **Review Request Again:** Customer support reviews the request again
+    after receiving additional information.
+  - **Forward to Technical Team:** If technical support is needed, the
+    request is forwarded to the technical team.
+  - **Inform Player of Status:** Customer support informs the player of
+    the status while the technical team works on the solution.
+  - **Notify Player of Resolution:** Once the technical team resolves
+    the issue, customer support notifies the player.
+- **Technical Support Swimlane:**
+  - **Work on Solution:** The technical team works on resolving the
+    issue.
+  - **Notify Customer Support of Resolution:** Once resolved, the
+    technical team notifies customer support.
 
 ## Question 6
 
-### a)
+![Class diagram](./img/ex6.png)
 
-<figure>
-<img src="./img/ex6.png" alt="Class Diagram" />
-<figcaption aria-hidden="true">Class Diagram</figcaption>
-</figure>
+### Explanation and Constraints:
 
-### b)
+- **Player Class:**
+  - Players can participate in multiple races, but not at the same date
+    and time.
+  - Players must unlock a kart before using it in a race.
+- **Kart Class:**
+  - Each kart is linked to a single character.
+  - A kart can only be used in a race if it is unlocked by the player.
+- **Character Class:**
+  - Each character has a unique name and avatar.
+  - No character can appear multiple times as a racer in a single race.
+- **Track and Tournament Classes:**
+  - A race is associated with either a track or a tournament, but never
+    both.
+- **Race Class:**
+  - Stores the `dateTime` of the race and whether it is `isOnline`.
+  - Method `addParticipant(Player, Kart)` to add participants to the
+    race.
+  - A race can have between 1 and 8 karts and characters, ensuring no
+    character appears more than once.
+- **OfflineRace Class:**
+  - Inherits from `Race`.
+  - Includes 7 AI-controlled karts.
+- **OnlineRace Class:**
+  - Inherits from `Race`.
+  - Includes between 4 and 8 human players as participants.
 
--   Restrictions:
-    -   Each product has a unique reference number.
-    -   The price of a product should be non-negative. If it’s zero,
-        meaning the product is free, it cannot have a discount.
--   Integrity Constraints:
-    -   Each order is placed by a single customer and can contain one or
-        more products. An order can’t exist without a customer.
-    -   A user can be a customer, meaning a user can place orders.
-    -   Data about each product’s type - physical or digital - is
-        maintained. Weight and shipping cost are associated with
-        physical products while a URL and max downloads are tracked for
-        digital products.
--   Other considerations:
-    -   The total amount of each order, in terms of cost, is derived by
-        the aggregation of subtotals of individual products in the
-        order, the result of multiplying the number of units by the
-        price of the product.
-    -   The available inventory can be indirectly tracked by assaying
-        the count of each product reference in all orders.
+### Key Constraints and Derived Information:
+
+1.  **Unique Character Constraint:** No character can appear multiple
+    times in a race. Since each kart is linked to a single character,
+    this ensures that no two karts of the same character are used in the
+    same race.
+
+2.  **Race Participation Constraint:** A player cannot participate in
+    multiple races scheduled at the same date and time.
+
+3.  **Kart Unlocking Constraint:** A player must unlock a kart before
+    using it in any race.
+
+4.  **Race Association Constraint:** A race is associated with either a
+    track or a tournament, but not both.
+
+5.  **Participant Count Constraint:**
+
+    - Offline races include 1 player and 7 AI karts.
+    - Online races include between 4 and 8 human players.
