@@ -1,21 +1,16 @@
 # PRAC 2
 Alejandro Pérez Bueno
-May 31, 2024
+Dec 19, 2024
 
 - [Self-Responsibility Declaration](#self-responsibility-declaration)
 - [Question 1](#question-1)
 - [Question 2](#question-2)
-  - [Additional Use Case](#additional-use-case)
-  - [Use Case Diagrams](#use-case-diagrams)
+  - [Additional Use Cases from
+    Interviews:](#additional-use-cases-from-interviews)
+  - [UML Use Case Diagram:](#uml-use-case-diagram)
 - [Question 3](#question-3)
-  - [Class Diagram](#class-diagram)
-  - [Explanation](#explanation)
 - [Question 4](#question-4)
-  - [Class Diagram](#class-diagram-1)
-  - [Explanation](#explanation-1)
 - [Question 5](#question-5)
-  - [Class Diagram](#class-diagram-2)
-  - [Explanation](#explanation-2)
 
 
 
@@ -28,12 +23,6 @@ May 31, 2024
 > this subject considered appropriate, according to the FAQs about
 > plagiarism.
 
-> [!TIP]
->
-> All diagrams from this practice have been generated using
-> [mermaid.js](https://mermaid.js.org/) or
-> [plantuml](https://plantuml.com/).
-
 
 
 ## Question 1
@@ -42,286 +31,372 @@ May 31, 2024
 
 ## Question 2
 
-### Additional Use Case
+### Additional Use Cases from Interviews:
 
-#### Global Administrator
+- **Neighbour:** *Submit a Proposal* - This use case allows a Neighbour
+  to submit a proposal for discussion or voting to the community. This
+  functionality is mentioned by Juanma as a way to handle issues too
+  complex for the online forum.
+- **President:** *Change Community President* - Ariadne specifically
+  mentions the need to change the community president in the
+  application, especially for communities with rotating presidents.
+- **Property Manager:** *Generate Community Financial Reports* - Juanma
+  highlights the need for professional property managers to have access
+  to financial data and reports. This use case addresses that need.
+- **Director:** There is no mention of a “Director” role in the provided
+  interview transcripts. It’s impossible to define a relevant use case
+  without understanding this role’s responsibilities.
+- **Anonymous User:** *View Public Community Information* - While Juanma
+  emphasizes data protection, it is plausible that some community
+  information, such as meeting dates or public announcements, could be
+  accessible to anonymous users to promote transparency.
 
-**Use Case Identifier:** Define Minimum Rental Price for Studios
-
-**Main Actor:** Global Administrator
-
-**Supporting Actors:** None
-
-**Level:** Strategic
-
-**Scope:** Organization
-
-**Main Success Scenario:**
-
-1.  The global administrator accesses the platform.
-2.  The global administrator navigates to the pricing management
-    section.
-3.  The global administrator selects the option to define minimum rental
-    prices.
-4.  The global administrator inputs the minimum prices for different
-    studio sizes.
-5.  The global administrator saves the changes.
-6.  The system confirms the changes.
-7.  The use case ends.
-
-**Alternative Scenarios:**
-
-4a. The input prices are below the allowed minimum. 4a1. The system
-displays an error message. 4a2. The use case returns to step 4.
-
-#### Local Administrator
-
-**Use Case Identifier:** Manage Studio Availability
-
-**Main Actor:** Local Administrator
-
-**Supporting Actors:** None
-
-**Level:** Operational
-
-**Scope:** Local Radio Station
-
-**Main Success Scenario:**
-
-1.  The local administrator logs into the platform.
-2.  The local administrator navigates to the studio management section.
-3.  The local administrator updates the availability of studios,
-    including enabling or disabling specific studios.
-4.  The local administrator updates the time slots for each studio.
-5.  The local administrator applies a margin to the rental price.
-6.  The local administrator saves the changes.
-7.  The system confirms the updates.
-8.  The use case ends.
-
-**Alternative Scenarios:**
-
-3a. No changes are made to the studio availability.
-
-3a1. The local administrator exits without saving.
-
-3a2. The use case ends.
-
-#### Technician
-
-**Use Case Identifier:** Register as an Independent Technician
-
-**Main Actor:** Technician
-
-**Supporting Actors:** None
-
-**Level:** Operational
-
-**Scope:** Platform
-
-**Main Success Scenario:**
-
-1.  The technician accesses the platform.
-2.  The technician navigates to the registration section.
-3.  The technician fills out the registration form with personal
-    details, qualifications, and availability.
-4.  The technician submits the registration form.
-5.  The system validates the information and confirms the registration.
-6.  The use case ends.
-
-**Alternative Scenarios:**
-
-4a. The information is incomplete or incorrect.
-
-4a1. The system displays an error message.
-
-4a2. The use case returns to step 3.
-
-#### Anonymous User
-
-**Use Case Identifier:** Browse Available Studios
-
-**Main Actor:** Anonymous User
-
-**Supporting Actors:** None
-
-**Level:** Informational
-
-**Scope:** Platform
-
-**Main Success Scenario:**
-
-1.  The anonymous user accesses the platform.
-2.  The anonymous user navigates to the browse section.
-3.  The anonymous user selects a date and time to check studio
-    availability.
-4.  The system displays available studios for the selected time.
-5.  The use case ends.
-
-**Alternative Scenarios:**
-
-4a. No studios are available for the selected time.
-
-4a1. The system informs the user.
-
-4a2. The use case ends.
-
-### Use Case Diagrams
+### UML Use Case Diagram:
 
 ![Use Case Diagram](./img/q2.png)
 
 ## Question 3
 
-### Class Diagram
+![Class Diagram](./img/q3.png)
 
-``` mermaid
-classDiagram
-    class Radio {
-        +String name
-        +String URL
-        +String InstagramAccount
-        +String phoneNumber
-        +Address location
-    }
-    class Address {
-        +String street
-        +String postalCode
-        +String city
-        +String latitude
-        +String longitude
-    }
-    class Frequency {
-        +String frequency
-        +String type
-        +String description
-    }
-    class StudioModel {
-        +String size
-        +String description
-        +Double rentalPrice
-    }
-    class Studio {
-        +String name
-        +String size
-        +Double priceMargin
-        +String technicalDescription
-        +Image[] images
-    }
-    class Image {
-        +String diskPath
-    }
-    class TimeSlot {
-        +String startTime
-        +String endTime
-        +String days
-    }
-    Radio "1" -- "1" Address : has
-    Radio "1" -- "*" Frequency : broadcasts
-    Radio "1" -- "*" Studio : owns
-    Studio "1" -- "1" StudioModel : based on
-    Studio "1" -- "*" Image : has
-    Studio "1" -- "*" TimeSlot : available at
-```
+**Keys:**
 
-### Explanation
+- **User**: `email` (Primary Key, unique across all users)  
+- **Neighbour**: Inherits `email` from `User`  
+- **PropertyManager**: Inherits `email` from `User`  
+- **Community**: `communityID` (Primary Key, unique identifier)  
+- **Presidency**: `presidencyID` (Primary Key, unique for each
+  presidency)  
+- **Calendar**: `calendarID` (Primary Key, unique for each calendar)  
+- **Event**: `eventID` (Primary Key, unique for each event)  
+- **Subscription**: Composite key of `email` and `eventID` (each
+  subscription is unique per user-event pair)  
+- **Statutes**: Associated with `communityID` (one set of statutes per
+  community)
 
-1.  **Keys:**
-    - **Radio**: The key for the Radio class is the `name` attribute,
-      which is unique.
-    - **Studio**: The key for the Studio class is the `name` attribute,
-      which is unique within the context of a Radio station.
-2.  **Textual Integrity Constraints:**
-    - **Radio**: Each Radio must have at least one associated Frequency,
-      which is identified by its unique combination of frequency value,
-      type (FM or AM), and description.
-    - **StudioModel**: Each StudioModel is uniquely identified by its
-      `size`. No two models can refer to the same size.
-    - **Frequency**: The primary frequency for each Radio station is
-      mandatory, ensuring that each Radio has at least one Frequency
-      marked as primary.
-3.  **Derived Information:**
-    - **Studio Final Price**: The final price of a Studio is derived
-      from the base price defined in the StudioModel plus an optional
-      price margin specified by the Radio station when defining a
-      Studio. This allows for the calculation of the final price which
-      is stored and used for transactions.
+**Integrity Constraints:**
+
+1.  **Unique Email**: The `email` attribute must be unique for each
+    `User` in the system.
+
+2.  **Neighbour Constraints**:
+
+    - A `Neighbour` must belong to one and only one `Community`
+      (`Neighbour.communityID` is a mandatory foreign key to
+      `Community.communityID`).  
+    - `floorNumber` and `doorNumber` are optional attributes.  
+    - `livesPermanently` is a boolean indicating if the neighbour
+      permanently resides in the property.  
+    - `inArrears` is a boolean indicating if the neighbour is behind on
+      payments.
+
+3.  **President Constraints**:
+
+    - A `Neighbour` must have `livesPermanently` set to `true` to become
+      a `President`.  
+    - The application must prevent a neighbour from becoming president
+      if they do not live permanently in the building.  
+    - `Presidency` records link `Neighbour` and `Community` with
+      `startDate` and `endDate` to store the history of presidents.  
+    - At any given time, there can be at most one active presidency
+      (`endDate` is `null`) per `Community`.
+
+4.  **Community Constraints**:
+
+    - **Address**:
+      - At least one address (`address1StreetName`,
+        `address1PostalCode`, `address1City`) must be provided.  
+      - If a second address is provided (`address2StreetName`, etc.), it
+        must be different from the first address.  
+    - `typeOfBuilding` must be either “horizontal” or “vertical”.  
+    - A `Community` may optionally have a `PropertyManager`.
+
+5.  **PropertyManager Constraints**:
+
+    - A `PropertyManager` can manage multiple `Communities`.  
+    - If a `Community` has a `PropertyManager`, it must be linked
+      appropriately.
+
+6.  **Calendar and Events Constraints**:
+
+    - Each `Community` has one `Calendar`.  
+    - The `Calendar` contains multiple `Events`.  
+    - All users (`Neighbours` and `PropertyManagers`) linked to a
+      `Community` can subscribe to `Events`.  
+    - The number of events in a `Calendar` is a derived attribute
+      calculated from the count of `Events` associated with it.
+
+7.  **Subscription Constraints**:
+
+    - A `User` can subscribe to multiple `Events`.  
+    - An `Event` can have multiple `Users` subscribed to it.  
+    - The `Subscription` relationship ensures that users receive
+      notifications about events they are interested in.
+
+8.  **Statutes Constraints**:
+
+    - A `Community` may optionally have `Statutes`.  
+    - If `Statutes` are present, they must include `content` and
+      `lastEditDate`.  
+    - Only one set of `Statutes` per `Community`.
+
+9.  **General Constraints**:
+
+    - When adding an address, mandatory fields are `streetName`,
+      `postalCode`, and `city`.  
+    - The `endDate` in `Presidency` is optional and is set when a
+      presidency ends.  
+    - All data must comply with data integrity and validation rules
+      (e.g., dates should be valid, boolean values properly set).
+
+**Derived Information:**
+
+- **Number of Events in a Calendar**: The `numberOfEvents` attribute in
+  `Calendar` is derived by counting the total number of `Events` linked
+  to that `Calendar`.
 
 ## Question 4
 
-### Class Diagram
-
 ![Class Diagram](./img/q4.png)
 
-### Explanation
+**Keys:**
 
-- **Keys:**
-  - **User**: The `email` attribute serves as the unique identifier.
-  - **Studio**: The `name` attribute can be considered unique within the
-    context of a radio station.
-  - **Rental**: A composite key could be formed with `date`,
-    `startTime`, and `Studio` as no two rentals can start at the same
-    time in the same studio.
-- **Integrity Constraints:**
-  - A Technician must be associated with at least one RadioStation.
-  - A Rental must have a valid Podcaster, Technician, and Studio
-    associated with it.
-  - The `totalPrice` in Rental is derived from
-    `Studio.rentalHourlyRate`, `Technician.hourlyRate`, and `duration`.
-- **Derived Information:**
-  - **Rental.totalPrice**: Derived from multiplying the sum of
-    `Studio.rentalHourlyRate` and `Technician.hourlyRate` by the
-    `duration` of the rental.
+- **User**: `email` (Primary Key)  
+- **Neighbour**: Inherits `email` from **User**  
+- **President**: Inherits `email` from **Neighbour**  
+- **PropertyManager**: Inherits `email` from **User**  
+- **Community**: `communityID` (Primary Key)  
+- **Vote**: `voteID` (Primary Key)  
+- **PossibleAnswer**: Composite Primary Key (`possibleAnswerID`,
+  `voteID`)  
+- **VoteParticipation**: Composite Primary Key (`voteID`,
+  `neighbourEmail`)  
+- **Delegation**: `neighbourEmail` (Primary Key)
+
+**Integrity Constraints:**
+
+1.  **Vote Creation:**
+    - A `Vote` must be associated with one `Community` (`Vote` →
+      `Community`).  
+    - A `Vote` is created by either a `President` or a `PropertyManager`
+      (`Creator` interface).  
+    - The creator must be associated with the same `Community` where the
+      `Vote` is being held.
+2.  **Possible Answers:**
+    - Each `Vote` must have at least **two** `PossibleAnswers`.  
+    - Each `PossibleAnswer` is associated with one `Vote`.
+3.  **Voting Eligibility:**
+    - Only `Neighbours` who are **not in arrears** (`inArrears = False`)
+      can participate in votes.  
+    - `President` can participate in votes if they are not in arrears
+      (since they are also a `Neighbour`).  
+    - Only `Neighbours` belonging to the specific `Community` can
+      participate in its `Votes`.
+4.  **VoteParticipation:**
+    - Records the `votingDate`, which must be within the `Vote`’s
+      `startDate` and `endDate`.  
+    - Each `VoteParticipation` links a `Neighbour` to a `Vote`,
+      recording their selected `PossibleAnswer`.  
+    - A `Neighbour` can participate in a `Vote` only once; enforced by
+      the composite primary key (`voteID`, `neighbourEmail`).
+5.  **Delegation:**
+    - Only `Neighbours` who **do not reside permanently** in their
+      property (`livesPermanently = False`) can delegate their votes.  
+    - Delegation is from a `Neighbour` to the `President` of their
+      `Community`.  
+    - Delegation is valid from `startDate` to an optional `endDate`. If
+      `endDate` is not set, the delegation is considered ongoing.  
+    - During the delegation period, the `Neighbour` cannot cast votes
+      themselves; the `President` votes on their behalf.
+6.  **Derived Information:**
+    - **Number of Votes** for a `Vote` is calculated by counting the
+      associated `VoteParticipation` entries.  
+    - **Most Voted Answer(s)** are determined by tallying the
+      `PossibleAnswer` selections in `VoteParticipation` records. In
+      case of ties, multiple answers may be the most voted.
+7.  **Constraints on Dates:**
+    - `Vote.startDate` and `Vote.endDate` must be valid dates with
+      `startDate` before `endDate`.  
+    - `VoteParticipation.votingDate` must be between the `Vote`’s
+      `startDate` and `endDate`.
+8.  **Constraints on Delegation:**
+    - A `Neighbour` cannot delegate their vote if they reside
+      permanently (`livesPermanently = True`).  
+    - A `Neighbour` can only delegate their vote to the `President` of
+      their own `Community`.  
+    - The `Delegation` must not have overlapping delegation periods for
+      the same `Neighbour`.
+9.  **Constraints on Voting:**
+    - The system must prevent a `Neighbour` from voting if they have an
+      active delegation.  
+    - A `Neighbour` cannot vote if they are in arrears.
+10. **Multiplicity Constraints:**
+    - Each `Vote` must have at least **two** `PossibleAnswers`
+      (Multiplicity `2..*`).  
+    - A `Neighbour` can have at most **one** active `Delegation`.
+11. **Data Integrity:**
+    - All foreign keys must reference existing records (e.g., `voteID`
+      in `VoteParticipation` must exist in `Vote`).  
+    - The `President` must be associated with the same `Community` as
+      the `Neighbour` in `Delegation`.  
+    - The selected `PossibleAnswer` in `VoteParticipation` must be one
+      of the possible answers for that `Vote`.
+
+**Derived Information Calculations:**
+
+- **Number of Votes for a Vote:**
+  - Count the number of `VoteParticipation` records associated with that
+    `Vote`.
+- **Most Voted Answer(s):**
+  - For each `PossibleAnswer`, count the number of times it was selected
+    in `VoteParticipation`.  
+  - The answer(s) with the highest count are the most voted. In the case
+    of equal counts, multiple answers can be the most voted.
+
+**Changes from Previous Classes:**
+
+- **Classes Reused:** `User`, `Neighbour`, `President`,
+  `PropertyManager`, and `Community` are included from previous
+  exercises.  
+- **No Attribute Changes:** The attributes from the previous classes
+  remain unchanged for this diagram.  
+- **Additional Associations:** New associations have been added to
+  connect these classes to the voting system entities (`Vote`,
+  `PossibleAnswer`, `VoteParticipation`, `Delegation`).
 
 ## Question 5
 
-### Class Diagram
+![Class Diagram](./img/q5.png)
 
-``` mermaid
-classDiagram
-    class PodcastRecording {
-        +String filePath
-        +boolean uploadFlag
-        +Tag[] tags
-    }
-    class Tag {
-        +String type
-        +String value
-        +Date modificationDate
-    }
-    class Platform {
-        +String name
-        +String logo
-        +Credentials credentials
-    }
-    class UploadEvent {
-        +Date uploadDate
-        +boolean successFlag
-        +String responseMessage
-    }
-    class Credentials {
-        +String username
-        +String password
-    }
-    PodcastRecording "1" -- "*" Tag : has
-    PodcastRecording "*" -- "*" Platform : uploads to
-    PodcastRecording "1" -- "*" UploadEvent : triggers
-    Platform "1" -- "1" Credentials : uses
-```
+**Keys of Domain Classes:**
 
-### Explanation
+1.  **Community**
+    - `communityID` (Primary Key)
+2.  **Neighbour**
+    - `email` (Primary Key)
+3.  **Presidency**
+    - `presidencyID` (Primary Key)  
+    - `presidentEmail` (Foreign Key to Neighbour)  
+    - `communityID` (Foreign Key to Community)
+4.  **Fee**
+    - `feeID` (Primary Key)  
+    - `communityID` (Foreign Key to Community)  
+    - `approvedByPresidencyID` (Foreign Key to Presidency)
+5.  **FeeAmount**
+    - Composite Key: (`feeID`, `neighborEmail`) (Foreign Keys to Fee and
+      Neighbour)  
+    - Attributes:
+      - `amount`
+6.  **PaymentMethod** (Abstract Class)
+    - `paymentMethodID` (Primary Key)  
+    - `neighborEmail` (Foreign Key to Neighbour)  
+    - `type` (“DirectDebit” or “SmartphonePayment”)
+7.  **DirectDebitPaymentMethod** (Subclass of PaymentMethod)
+    - Inherits `paymentMethodID`  
+    - Attributes:
+      - `IBAN` (Unique across all PaymentMethods)  
+      - `accountHolderName`
+8.  **SmartphonePaymentMethod** (Subclass of PaymentMethod)
+    - Inherits `paymentMethodID`  
+    - Attributes:
+      - `provider` (“Google” or “Apple”)  
+      - `cardNumber` (Unique across all PaymentMethods)  
+      - `cardHolderName`  
+      - `expirationDate`  
+      - `CVV`
+9.  **PaymentMethodSelection**
+    - Composite Key: (`feeID`, `neighborEmail`)  
+    - Attributes:
+      - `paymentMethodID` (Foreign Key to PaymentMethod)
+10. **Payment**
+    - `paymentID` (Primary Key)  
+    - Attributes:
+      - `transactionIdentifier`  
+      - `paymentDate`  
+      - `feeID` (Foreign Key to Fee)  
+      - `neighborEmail` (Foreign Key to Neighbour)  
+      - `paymentMethodID` (Foreign Key to PaymentMethod)  
+      - `amount`
 
-- **Keys:**
-  - **PodcastRecording**: The `filePath` attribute can serve as a unique
-    identifier.
-  - **Platform**: The `name` attribute is unique.
-  - **Tag**: A composite key of `type` and `PodcastRecording` could
-    uniquely identify a tag, ensuring that there can only be one tag of
-    each type per recording.
-- **Integrity Constraints:**
-  - Each podcast recording must have exactly one tag of type “title” and
-    can optionally have one of type “description”.
-  - Each platform must have unique access credentials.
-- **Derived Information:**
-  - **UploadEvent.successFlag**: This flag is derived based on the
-    response from the platform after attempting to upload a podcast
-    recording. If the platform responds positively, the flag is set to
-    true; otherwise, it is set to false.
+**Integrity Constraints and Business Rules:**
+
+1.  **Fee Constraints:**
+    - `frequency` must be one of “monthly”, “quarterly”, “semi-annual”,
+      or “annual”.  
+    - A **Fee** must be associated with one **Community**.  
+    - The `approvalDate` must be set when the **Fee** is approved.  
+    - `approvedByPresidencyID` must reference a **Presidency** whose
+      term includes the `approvalDate`.  
+    - The **Presidency** must be associated with the same **Community**
+      as the **Fee**.
+2.  **FeeAmount Constraints:**
+    - Each **FeeAmount** links a **Neighbour** to a **Fee** and
+      specifies the `amount` they need to pay.  
+    - The `amount` must be greater than zero.  
+    - One **FeeAmount** per **Neighbour** per **Fee**.
+3.  **PaymentMethod Constraints:**
+    - **PaymentMethod** is associated with one **Neighbour**.  
+    - The `IBAN` in **DirectDebitPaymentMethod** must be unique across
+      all payment methods.  
+    - The `cardNumber` in **SmartphonePaymentMethod** must be unique
+      across all payment methods.  
+    - For **DirectDebitPaymentMethod**, `IBAN` and `accountHolderName`
+      cannot be null.  
+    - For **SmartphonePaymentMethod**, `provider`, `cardNumber`,
+      `cardHolderName`, `expirationDate`, and `CVV` cannot be null.  
+    - The `provider` must be either “Google” or “Apple”.
+4.  **PaymentMethodSelection Constraints:**
+    - Each **PaymentMethodSelection** specifies the `paymentMethodID`
+      for a **Neighbour** for a specific **Fee**.  
+    - The `paymentMethodID` must belong to the same **Neighbour** as
+      specified in `neighborEmail`.  
+    - One **PaymentMethodSelection** per **Neighbour** per **Fee**.
+5.  **Payment Constraints:**
+    - Each **Payment** must reference a valid **Fee**, **Neighbour**,
+      and **PaymentMethod**.  
+    - The `paymentMethodID` must be the one selected in
+      **PaymentMethodSelection** for the corresponding **Fee** and
+      **Neighbour**.  
+    - The `paymentDate` must be after the `approvalDate` of the
+      **Fee**.  
+    - The `amount` in **Payment** should match the `amount` specified in
+      **FeeAmount** for that **Fee** and **Neighbour**.
+6.  **Approval Process Constraints:**
+    - A **Fee** must be reviewed and approved by the **President**
+      before any payments can be processed.  
+    - The **President** approving the **Fee** must be in office during
+      the `approvalDate`.
+7.  **Uniqueness Constraints:**
+    - `IBAN` and `cardNumber` must be unique across all payment methods
+      in the system.  
+    - **PaymentMethod** IDs are unique.  
+    - **Payment** IDs are unique.
+8.  **Association Constraints:**
+    - **Neighbour** belongs to one **Community**.  
+    - **Presidency** is associated with one **Community** and one
+      **President** (**Neighbour**).  
+    - **FeeAmount** must link **Neighbours** that belong to the same
+      **Community** as the **Fee**.
+9.  **Data Integrity Constraints:**
+    - All date attributes must be valid dates.  
+    - Non-nullable attributes must have valid data.  
+    - Foreign keys must reference existing records.
+10. **Sequence of Operations:**
+    - A **Fee** is created and then must be approved by the
+      **President**.  
+    - After approval, each **Neighbour** must select a **PaymentMethod**
+      for the **Fee**.  
+    - Payments can then be made using the selected **PaymentMethod**.
+
+**Derived Information:**
+
+- **Payment Amount in Payment**:
+  - The `amount` in **Payment** can be derived from the `amount`
+    specified in **FeeAmount** for the corresponding **Fee** and
+    **Neighbour**.  
+  - Alternatively, it can be stored explicitly to record partial
+    payments or adjustments.
+- **Approval by President:**
+  - Although the **Fee** records the `approvedByPresidencyID`, the
+    actual **President** (the **Neighbour**) who approved the **Fee**
+    can be derived from the **Presidency** referenced.
