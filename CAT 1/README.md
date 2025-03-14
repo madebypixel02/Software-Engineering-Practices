@@ -70,11 +70,10 @@ Mar 14, 2025
 
 **Project 1: Gaming Entrepreneur**
 
-1.  **Project Type (Section 3.2):** Type 2 (Clear Objective,
-    Little-known Solution). The entrepreneur has a clear goal (launching
-    a specific game), but lacks art and game design expertise. The
-    reliance on demos and feedback indicates an exploratory approach to
-    the solution.
+1.  **Project Type:** Type 2 (Clear Objective, Little-known Solution).
+    The entrepreneur has a clear goal (launching a specific game), but
+    lacks art and game design expertise. The reliance on demos and
+    feedback indicates an exploratory approach to the solution.
 2.  **Development Method:** Lean and Agile Development: Agile is
     suitable for group 2 projects . The need for feedback and iterative
     improvements aligns perfectly with agile principles. Agile
@@ -85,13 +84,13 @@ Mar 14, 2025
 
 **Project 2: Hospital Emergency Management System**
 
-1.  **Project Type (Section 3.2):** Type 2 (Clear Objective,
-    Little-known Solution). The hospital has a clear objective
-    (improving patient prioritization). However, they’re open to new
-    technologies and even replacing the system, suggesting the best
-    solution is not yet known and they’re willing to experiment. The
-    need to compare the new system with the existing one and adjust
-    features based on the results highlights the need for flexibility.
+1.  **Project Type:** Type 2 (Clear Objective, Little-known Solution).
+    The hospital has a clear objective (improving patient
+    prioritization). However, they’re open to new technologies and even
+    replacing the system, suggesting the best solution is not yet known
+    and they’re willing to experiment. The need to compare the new
+    system with the existing one and adjust features based on the
+    results highlights the need for flexibility.
 2.  **Development Method:** Iterative and Incremental Life Cycle: This
     method provides an accelerated feedback . The iterative nature
     allows the hospital to test and validate improvements in stages
@@ -103,11 +102,11 @@ Mar 14, 2025
 
 **Project 3: Tourism Company and Augmented Reality**
 
-1.  **Project Type (Section 3.2):** Type 4 (Unclear Objective,
-    Little-known Solution). The company wants to *explore* the
-    application of AR. There’s no defined problem to solve, but rather a
-    desire to see what possibilities AR offers. The solution is also
-    unknown since it’s about exploring AR’s application.
+1.  **Project Type:** Type 4 (Unclear Objective, Little-known Solution).
+    The company wants to *explore* the application of AR. There’s no
+    defined problem to solve, but rather a desire to see what
+    possibilities AR offers. The solution is also unknown since it’s
+    about exploring AR’s application.
 2.  **Development Method:** Lean and Agile Development: Type 4 projects
     need a flexible method . In this scenario, an agile approach is
     suitable, particularly lean development. Lean development
@@ -129,11 +128,12 @@ Example type 1 project:
 > SQL Server. Since their database team has experience with both
 > systems, the technical aspects shouldn’t pose any surprises.
 >
-> This is a classic Type 1 project - the company has a precise objective
-> and a proven method to achieve it. There’s very little guesswork
-> involved regarding what needs to be done, which technology to use, or
-> how to define the project’s boundaries. It’s essentially a
-> straightforward migration with clearly defined start and end points.
+> This is a perfect example of a Type 1 project - the company has a
+> precise objective and a proven method to achieve it. There’s very
+> little guesswork involved regarding what needs to be done, which
+> technology to use, or how to define the project’s boundaries. It’s
+> essentially a straightforward migration with clearly defined start and
+> end points.
 
 ## Module 2 Questions
 
