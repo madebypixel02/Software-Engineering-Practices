@@ -27,12 +27,16 @@ format:
           \fancyfoot{}
           \fancyfoot[C]{\thepage}
 ---
+
 {{< pagebreak >}}
+
 ## Self-Responsibility Declaration
 
 > I certify that I have completed Practice 1 entirely on my own and solely with the assistance deemed appropriate by the course instructors, according to the guidelines explained in the Originality in Assessment section of the classroom.
 >
 > I understand that non-original work and/or the use of generative AI will result in the submitted activity not being graded and will automatically receive a score of 0.
+
+{{< pagebreak >}}
 
 ## Question 1
 

@@ -32,6 +32,8 @@ Apr 04, 2025
 > will result in the submitted activity not being graded and will
 > automatically receive a score of 0.
 
+
+
 ## Question 1
 
 Below are three non‐functional requirements identified from the
