@@ -1,12 +1,12 @@
 ---
 title: "PRAC 1"
 subtitle: "Software Engineering"
-author: Alejandro Pérez Bueno
-date: today
+author: "Alejandro Pérez Bueno"
+date: "today"
 date-format: "MMM DD, YYYY"
 toc: true
 toc-title: "Table of Contents"
-linkcolor: blue
+linkcolor: "blue"
 documentclass: report
 link-citations: true
 link-bibliography: true
@@ -27,145 +27,148 @@ format:
           \fancyfoot{}
           \fancyfoot[C]{\thepage}
 ---
-
 {{< pagebreak >}}
-
 ## Self-Responsibility Declaration
 
-> I understand that plagiarism, the use of AI or other generated content will imply that the
-delivered work will not be reviewed and it will be automatically assigned a grade of D.
-I certify that I have completed the PRAC1 individually and only with the help that the
-professors of this subject considered appropriate, according to the FAQs about
-plagiarism.
-
-{{< pagebreak >}}
+> I certify that I have completed Practice 1 entirely on my own and solely with the assistance deemed appropriate by the course instructors, according to the guidelines explained in the Originality in Assessment section of the classroom.
+>
+> I understand that non-original work and/or the use of generative AI will result in the submitted activity not being graded and will automatically receive a score of 0.
 
 ## Question 1
 
-### Non-Functional Requirement 1
+Below are three non‐functional requirements identified from the statement:
 
-| **Category**          | **Details**                                                                                                                                                                                                  |
-| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Requirement          | "I believe that ensuring 99.9% availability is sufficient."                                                                                                                                                 |
-| Description          | The system should be available to users 99.9% of the time. This means there can be a total downtime of no more than 8 hours and 45 minutes per year.                                                             |
-| Type                 | **Availability**                                                                                                                                                                                                 |
-| Stakeholder          | **Salma** (Software Engineer responsible for the development of the application)                                                                                                                                     |
+* Requirement 1
+  * Phrase: _I would like the application to have a visual appearance in line with the company's colors and aesthetics..._
+  * Description: The user interface must reflect the company’s brand identity by using its specific colors, design elements, and overall aesthetic, thereby making the application immediately recognizable as a WeddingWorld tool.
+  * Type: *Look and feel requirement*
+  * Stakeholder: *Alba*
 
-### Non-Functional Requirement 2 
+* Requirement 2
+  * Phrase: _the application must be available both as a web version and as a mobile app for smartphones (Android and iOS)._
+  * Description: The system has to be developed for multiple platforms, ensuring that it runs consistently on desktop browsers as well as on native mobile devices (Android and iOS), so users can access it in different environments.
+  * Type: *Portability requirement*
+  * Stakeholder: *Pablo*
 
-| **Category**          | **Details**                                                                                                                                                                                                                                    |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Requirement          | "Considering the project's characteristics, we will develop the application using a cross-platform framework, allowing us to run the application on both iOS and Android with the same code, thus speeding up development and simplifying maintenance." |
-| Description          | The application should be developed using a cross-platform framework so that the application can be deployed on both iOS and Android using the same codebase. This will reduce development time and maintenance efforts.                     |
-| Type                 | **Portability/Compatibility**                                                                                                                                                                                                                    |
-| Stakeholder          | **Salma** (Software Engineer responsible for the development of the application)                                                                                                                                                                 |
-
-### Non-Functional Requirement 3
-
-| **Category**          | **Details**                                                                                                                                                                      |
-| :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Requirement          | "the application must comply with the WCAG 2.2 standard"                                                                                                                  |
-| Description          | The system should be accessible to users with disabilities. The Web Content Accessibility Guidelines (WCAG) 2.2 define how to make web content more accessible to people with disabilities. |
-| Type                 | **Accessibility**                                                                                                                                                               |
-| Stakeholder          | **Rasheeda** (Business Angel and financial manager of the project)                                                                                                                   |
+* Requirement 3
+  * Phrase: _the application should support 1,000 concurrent users under normal conditions but must be able to handle spikes of up to 5,000 concurrent users._
+  * Description: The system must be engineered to maintain acceptable performance under typical usage (1,000 users simultaneously) and be scalable enough to manage significant load increases (up to 5,000 concurrent users) during busy periods.
+  * Type: *Performance/scalability requirement*
+  * Stakeholder: *Estefanía*
 
 ## Question 2
 
-Here are the user stories:
+User roles:
 
-* As a **resident**, I want to be able to **view a calendar of events** so that I can **stay informed about upcoming community meetings, inspections, and other important dates.**
-* As a **resident**, I want to be able to **cast my vote in community polls** so that I can **have a say in decisions that affect my community**.
-* As a **president**, I want to be able to **create and manage community polls** so that I can **gather feedback and make decisions based on the input of residents**. 
-* As a **manager**, I want to be able to **manage community fees and track payment status** so that I can **ensure that the community is financially stable.** 
+* *Wedding Planner*
+* *Wedding Couple*
+* *Guest*
+* *Service Provider*
 
 ## Question 3
 
-## Conflicting and Dependent Requirements
+### Functional Requirements in User Story Format
 
-**a) Conflicting Requirements:**
+1. Virtual Event Board
+   * User Story: **As a wedding planner I want a virtual event board to add confirmed wedding events so that couples can easily keep track of the wedding day schedule.**
+   * Phrase: “The first functionality I want to implement is the virtual event board. This is a shared virtual board between the spouses and the wedding planner, where the assigned wedding planner will chronologically add all the confirmed events for the wedding day.”
 
-*   **Stakeholders:** Rasheeda (Business Angel) and Anonymous Residents
-*   **Conflicting Requirements:** Adding photos to advertisements vs. Setting advertisement expiration dates
-    *   **Rasheeda** wants the application to be accessible to people with disabilities and, therefore, requests that the application comply with the WCAG 2.2 standard. WCAG 2.2 includes success criterion 2.2.1: Timing Adjustable, which requires that users be able to disable, adjust, or extend time limits. [outside source] This means that if residents are allowed to set expiration dates for their advertisements, they must also be able to disable those expiration dates.
-    *   **Anonymous residents** might want to include photos in their advertisements. However, if the system allows photos, it would become more difficult to automatically moderate the content of the advertisements to ensure they do not violate the WCAG guidelines. For instance, a photo could contain flashing images or text that is illegible to people with certain visual impairments. As a result, setting expiration dates on advertisements with photos could conflict with the accessibility requirements proposed by Rasheeda. 
+2. Wedding Invitation Process
+   * User Story: **As a wedding planner I want to register weddings and send email invitations to couples so that they can confirm their wedding details.**
+   * Phrase: “The virtual invitation process should work as follows: The responsible wedding planner will access the application and register the wedding. The first step will be to associate both spouses with the newly created wedding. Once linked by the wedding planner, the couple will receive an email with a link allowing them to register and confirm that this is indeed their wedding.”
 
-**b) Dependent Requirements:**
+3. Public Registration Link for Guests
+   * User Story: **As a couple I want to share a public registration link with guests so that only invited guests can register and be linked to our wedding.**
+   * Phrase: “I would prefer if the wedding within the application had a public link, visible only to us (the couple), which we could share with guests so they can register and link themselves to the wedding through this link. However, before finalizing the linkage, we would validate that the person is indeed an invited guest.”
 
-*   **Stakeholders:** Anonymous residents and Julián (professional property manager)
-*   **Requirements:**  Registering as a resident and managing community fees. 
-    *   **Anonymous residents** should be able to register in the application to become part of the community. 
-    *   **Julián** suggests a feature for managing community fee payments. 
-    *   The ability to manage community fees is dependent on users being registered residents. Only registered residents should be able to view and pay their community fees. Therefore, the "manage community fees" requirement relies on the "register as a resident" requirement. 
+4. Direct Service Provider Registration
+   * User Story: **As a service provider I want to register and publish my services directly in the application so that I can quickly update details such as pricing and discounts without an intermediary.**
+   * Phrase: “As a provider, I would like to be able to register in the application and publish my services directly, without having to go through an intermediary from Alba’s company.”
+
+### Acceptance Tests for the Example User Story
+
+1. **Upload Process Verification**
+   * Test that when a guest selects the upload option and chooses a valid photo file (e.g., JPEG or PNG), the image is successfully uploaded and immediately displayed in the wedding photo gallery with the correct timestamp and attribution.
+
+2. **File Format and Size Handling**
+   * Test that the system accepts only supported image formats (such as JPEG and PNG) and enforces any file size limits by displaying a clear error message if a guest attempts to upload a file that is in an unsupported format or exceeds the size limit.
+
+3. **User Interface Feedback**
+   * Test that after a successful upload, the application shows a visible progress indicator during the upload process and a confirmation message once the upload is complete, ensuring that the guest is aware that their photo has been added to the gallery.
 
 ## Question 4
 
-Here are the user roles that exist in the application based on the interviews:
+A clear conflict arises regarding the commission fee imposed on service providers:
 
-*   **President**
-*   **Resident**
-*   **Manager**
-*   **Project Executives** 
+* Stakeholders involved:
+  * *Alba* (Wedding planner and CEO of WeddingWorld) and *Pablo* (Financial Director) support charging a commission.
+  * *Nuria* (Event Restaurant Manager and service provider) opposes any commission fees.
+
+* Requirement 1: “Charge a small commission to the provider for acquiring a new client through our platform.”
+  * Alba and Pablo argue that this commission creates an additional revenue stream that helps cover maintenance costs and contributes to the financial sustainability of the application.
+
+* Requirement 2: “I would not be in favor of being charged a commission for publishing our services or for being booked through the application.”
+  * Nuria explains that eliminating commission fees would allow providers like her to register and update their service details more directly and efficiently, thereby facilitating quicker service updates and reducing financial burdens on the providers.
 
 ## Question 5
 
-Let's describe the use case "Register a Community Fee in the Application" based on the provided interviews. The Property Manager, Julián, outlines how this process works when an association is managed by a professional property manager.
+- **Use Case Identifier:** UC-VWI-01 (Sending Virtual Wedding Invitations)
+- **Actor Principal:** *Wedding Planner* (Alba)
+- **Supporting Actors:**
+  - *Spouses* (Couple)
+  - *Guests*
+- **Level:** *User goal* (high-level functionality that supports the wedding management process)
+- **Scope:** *Wedding Management Application*
+- **Main Stage of Success:**
+  1. The wedding planner accesses the application and creates a new wedding record.
+  2. The wedding planner associates both spouses with the wedding.
+  3. Once associated, each spouse receives an email containing a registration link to confirm that the wedding details are correct.
+  4. After the spouses confirm their registration, the wedding planner inputs the guest list (using the provided and authorized email addresses).
+  5. Guests receive a virtual invitation via email that includes a link to register on the application.
+  6. Interested guests register (if they choose) and confirm their attendance directly within the application.
+  7. The use case completes once the guests’ attendance has been confirmed.
 
-### Use Case: Register a Community Fee
-
-*   **Use Case Identifier:** UC001
-*   **Actor Principal:** Property Manager
-*   **Supporting Actors:** President, Resident
-*   **Level:** User Goal
-*   **Scope:** Organization
-*   **Main Stage of Success:**
-
-    1.  The Property Manager initiates the fee registration process.
-    2.  The Property Manager enters the fee amount and payment frequency.
-        *   If the fee is not the same for everyone, the amount is entered individually for each resident.
-    3.  The Property Manager submits the fee information for validation.
-    4.  The President reviews the fee amounts and frequency. 
-    5.  The President approves the fee.
-    6.  The system sends a notification to each resident, prompting them to select a payment method.
-    7.  Residents select their preferred payment method.
-        *   If direct debit is selected, residents enter their bank account information.
-        *   If Apple/Google Pay is selected, residents choose their preferred card.
-    8.  The Property Manager validates that all residents have entered their payment information correctly.
-    9.  The fee registration is finalized.
-
-*   **Alternative Scenarios:**
-
-    1.  **President Rejects Fee:** If the President finds a discrepancy in the fee amount or frequency during their review, they reject the fee and provide a reason for the rejection. The Property Manager must then modify the fee information based on the President's feedback and resubmit it for approval. 
-    2.  **Resident Enters Incorrect Bank Information:** If a resident selects direct debit and enters an incorrect bank account number, the system displays an error message due to invalid check digits. The resident must correct the bank account information before proceeding. 
-    3.  **Resident Fails to Enter Payment Information:** If a resident does not enter their payment information within a specified timeframe, the Property Manager is alerted. The Property Manager then sends a message to the affected resident(s), reminding them to provide the required payment details. 
-
-This use case description provides a comprehensive overview of the fee registration process from an organizational level. However, it's important to note that the sources do not explicitly state how the President is notified of the submitted fee or how the Property Manager is alerted if residents do not enter payment information. These details would need to be further defined in a real-world scenario. 
+- **Alternative Scenarios:**
+  1. **Spouse Email Error:** If the wedding planner enters an incorrect email address for one or both spouses, the registration email is not received. In this case, the spouses must notify the wedding planner or the planner must verify and re-enter the correct email addresses before resending the invitation.
+  2. **Optional Guest Registration:** Some guests may choose not to register in the application. In these cases, although they still receive the virtual invitation by email, no further confirmation is performed within the app.
+  3. **Guest Declines Invitation:** A guest might register on the application but then actively decline the invitation. This outcome is documented, and the guest is marked as not attending, prompting the wedding planner to follow up or update their list accordingly.
 
 ## Question 6
 
-Here are some use cases based on the homeowner's association application interviews:
+### Existing User-Level Use Cases
 
-**a) User-level use cases where the President is the main actor:**
+1. **Sending Virtual Wedding Invitations**
+   - Main actor: *Wedding Planner*
+   - Brief Description: The wedding planner creates a new wedding record, associates the spouses, inputs the guest list, and the system automatically sends invitation emails to guests so that they can confirm their attendance.
 
-*   **Create a calendar event:** The President schedules events in the community calendar, including meetings, inspections, and other relevant dates.
-*   **Initiate a community vote:** The president starts a voting process for decisions that affect the community, allowing residents to participate and have a say.
+2. **Direct Service Provider Registration**
+   - Main actor: *Service Provider*
+   - Brief Description: A service provider registers in the application and publishes his or her services directly, thereby updating information such as pricing and discounts without intermediary intervention.
 
-**b) User-level use cases where the Neighbor is the main actor:**
+### New User-Level Use Cases Consistent with the Context
 
-*   **View the community calendar:** The Neighbor accesses the calendar to stay informed about upcoming events and important dates within the association.
-*   **Vote in a community poll:** The Neighbor participates in active polls to contribute to decision-making processes within the association.
+1. **Manage Wedding Budget**
+   - Main actor: *Couple*
+   - Brief Description: The couple can track and manage all wedding-related expenses, enter cost items, view budget summaries, and adjust allocations, ensuring that they remain within their planned spending.
 
-**c) Task-level use cases derived from selected user-level use cases:** 
+2. **Manage Service Bookings**
+   - Main actor: *Service Provider*
+   - Brief Description: A service provider can view, confirm, and manage the bookings received through the application, including checking details of each booking and updating availability accordingly.
 
-**For the President:**
+### Task-Level Use Cases for *a* and *b*
 
-*   **User-level use case:** Initiate a community vote
-    *   **Task-level use case 1:** **Define voting parameters.** The President sets the start and end dates of the vote, specifies the eligible voters, and sets up the voting options.
-    *   **Task-level use case 2:** **Publish the vote.** The President makes the vote accessible to eligible residents in the application.
+**"Sending Virtual Wedding Invitations"** (Main actor: *Wedding Planner*)
 
-**For the Neighbor:**
+- **Task-Level Use Case 1:** Create Wedding Record and Associate Spouses
+  - Description: The wedding planner enters wedding details and associates both spouses to the newly created wedding record. This task ensures that the couple receives the registration email to confirm their wedding details.
 
-*   **User-level use case:** View the community calendar
-    *   **Task-level use case 1:** **Filter calendar events.** The Neighbor chooses to view events based on categories like meetings, maintenance, or social gatherings.
-    *   **Task-level use case 2:** **Set event reminders.** The Neighbor subscribes to receive notifications or reminders for specific events.
+- **Task-Level Use Case 2:** Input Guest List and Initiate invitation Email
+  - Description: The wedding planner inputs the list of guest email addresses, verifies their correctness, and triggers the system to send out virtual invitation emails so that guests can register and confirm their attendance.
 
-These task-level use cases break down the broader user-level use cases into more specific and manageable actions, providing a more detailed view of how users will interact with the application. 
+**"Manage Wedding Budget"** (Main actor: *Couple*)
+
+- **Task-Level Use Case 1:** Record New Expense Item
+  - Description: The couple enters details for a new expense (such as amount, category, and date) into the application, thereby updating their wedding cost records.
+
+- **Task-Level Use Case 2:** View and Update Budget Overview
+  - Description: The couple accesses the current budget summary, reviews expense totals against their planned budget, and makes adjustments to budget allocations if necessary.
