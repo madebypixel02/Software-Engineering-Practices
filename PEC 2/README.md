@@ -1,25 +1,23 @@
 # CAT 2
 Alejandro Pérez Bueno
-Nov 29, 2024
+Apr 25, 2025
 
 - [Self-Responsibility Declaration](#self-responsibility-declaration)
 - [Question 1](#question-1)
-  - [Section 1](#section-1)
-  - [Section 2](#section-2)
-  - [Section 3](#section-3)
+  - [Store Class Diagram](#store-class-diagram)
+  - [Academy Class Diagram](#academy-class-diagram)
+  - [Activity Diagram](#activity-diagram)
 - [Question 2](#question-2)
 - [Question 3](#question-3)
 - [Question 4](#question-4)
-  - [Section A: Player, Character, and Kart
-    Information](#section-a-player-character-and-kart-information)
-  - [Section B: Track and Tournament
-    Information](#section-b-track-and-tournament-information)
+  - [Section A](#section-a)
+  - [Section B](#section-b)
+  - [Key Restrictions:](#key-restrictions-1)
 - [Question 5](#question-5)
-  - [Explanation:](#explanation)
 - [Question 6](#question-6)
-  - [Explanation and Constraints:](#explanation-and-constraints)
-  - [Key Constraints and Derived
-    Information:](#key-constraints-and-derived-information)
+  - [Key Constraints:](#key-constraints)
+  - [Integrity Constraints:](#integrity-constraints-2)
+  - [Derived Information:](#derived-information-1)
 
 
 
@@ -36,290 +34,144 @@ Nov 29, 2024
 
 ## Question 1
 
-### Section 1
+### Store Class Diagram
 
-![Class Diagram](./img/ex1-1.png)
+![Class Diagram](./img/ex1-1.jpeg)
 
-### Section 2
+### Academy Class Diagram
 
-![Class Diagram](./img/ex1-2.png)
+![Class Diagram](./img/ex1-2.jpeg)
 
-### Section 3
+### Activity Diagram
 
-![Class Diagram](./img/ex1-3.png)
-
-
-
-> [!CAUTION]
->
-> ### Disclaimer
->
-> Due to problems installing [Visual
-> Paradigm](https://www.visual-paradigm.com/) on *Linux*, I will add
-> diagrams drawn with *mermaid.js* or *PlantUML* moving on.
+![Activity Diagram](./img/ex1-3.jpeg)
 
 ## Question 2
 
-Here is the UML Class diagram:
-
-``` mermaid
-classDiagram
-    class Police {
-        code: String
-        name: String
-        lastName: String[2]
-        dateOfBirth: Date
-    }
-
-    class Inspector {
-        promotionDate: Date
-    }
-    Police <|-- Inspector
-
-    class Station {
-        name: String
-        location: String
-    }
-
-    class Case {
-        code: String
-        keyName: String
-        startDate: Date
-        endDate: Date
-    }
-
-    Police "1" -- "*" Case : AssignedTo
-    Police "1" -- "1" Station : WorksAt
-    Inspector "1" -- "*" Case : IsResponsibleFor
-    Case "*" -- "*" Case : RelatedTo
-```
+![Class Diagram](./img/ex2.png)
 
 ## Question 3
 
-![Use case diagram](./img/ex3.png)
-
-- **Actors:**
-  - **Player:** This actor represents anyone who has downloaded the
-    game.
-  - **Registered Player:** This actor represents a subset of players who
-    have created an account, allowing access to online features.
-- **Use Cases:**
-  - **Create Profile:** Allows players to create profiles to store basic
-    information and game preferences.
-  - **Select Favorite Kart:** Allows players to choose their preferred
-    kart for races.
-  - **Participate in Single Offline Race:** Allows players to race
-    against AI opponents on a single track.
-  - **Participate in Offline Tournament:** Allows players to engage in a
-    tournament against AI opponents across four pre-selected tracks.
-  - **Participate in Multiplayer Race:** Enables registered players to
-    compete against other players online.
-  - **Participate in Online Tournament:** Allows registered players to
-    take part in tournaments with other players online.
-  - **Check Global Ranking:** Allows registered players to see their
-    current standing on the global ELO-based ranking system.
-- **Relationships:** The lines connecting actors to use cases illustrate
-  that the actor can execute those specific actions within the game.
-
-> [!NOTE]
->
-> This diagram is focused on identifying user-level use cases, leaving
-> out lower-level details like “Select Track” or “Choose Opponent”. It
-> also avoids depicting any inclusion or extension relationships between
-> use cases.
+![Use Case Diagram](./img/ex3.png)
 
 ## Question 4
 
-### Section A: Player, Character, and Kart Information
+### Section A
 
-``` mermaid
-classDiagram
-    class Player {
-        +String playerId
-        +Date birthdate
-        +Kart favoriteKart
-        +unlockKart(Kart, DateTime)
-        +markFavoriteKart(Kart)
-    }
-    
-    class RegisteredPlayer {
-        +String email
-        +String alias
-        +String name
-        +String country
-    }
-    
-    class Character {
-        +String name
-        +String avatar
-    }
-    
-    class Kart {
-        +String name
-        +float maxSpeed
-        +float acceleration
-    }
-    
-    Player "1" --o "0..*" Kart : unlockedKarts
-    Player "1" --o "0..1" Kart : favoriteKart
-    RegisteredPlayer --|> Player
-    Character "1" --o "1..*" Kart : availableKarts
-```
+![Class Diagram](./img/ex4-1.png)
 
-#### Restrictions, integrity contraints and other derived info:
+#### Key Restrictions:
 
-- **Player Class:**
-  - Stores `playerId` and `birthdate`.
-  - Has a method `unlockKart(Kart, DateTime)` to record when a kart is
-    unlocked.
-  - Has a method `markFavoriteKart(Kart)` to set a favorite kart, which
-    must be unlocked first.
-- **RegisteredPlayer Class:**
-  - Inherits from `Player`.
-  - Stores additional information: `email`, `alias`, `name`, and
-    `country`.
-  - **Constraint:** No two `RegisteredPlayer` instances can have the
-    same `email`.
-- **Character Class:**
-  - Each character has a unique `name` and `avatar`.
-  - Each character is associated with one or more karts.
-- **Kart Class:**
-  - Each kart has a unique `name`, `maxSpeed`, and `acceleration`.
-  - A kart is linked to exactly one character.
-- **Relationships:**
-  - A `Player` can have multiple `unlockedKarts` and one `favoriteKart`.
-  - A `Character` can have multiple `availableKarts`.
+1.  Each Resident is uniquely identified by their DNI.
+2.  Each FamilyMember is uniquely identified by their code.
+3.  A Resident can have zero or more FamilyMembers.
+4.  A FamilyMember can be related to multiple Residents.
+5.  A FamilyMember can be a PrimaryContact for some Residents but not
+    for others.
+6.  A Room can have one or two Residents (single or double rooms).
 
-### Section B: Track and Tournament Information
+#### Integrity Constraints:
 
-``` mermaid
-classDiagram
-    class Track {
-        +String name
-        +float distance
-        +String difficulty
-    }
-    
-    class Tournament {
-        +String name
-        +String difficulty
-        +Tournament previousTournament
-    }
-    
-    Track "1" --o "0..*" Tournament : partOf
-    Tournament "1" --o "0..4" Track : consistsOf
-    Tournament "0..1" --o "0..*" Tournament : nextTournaments
-```
+1.  If a Room has two Residents, they must share a room with each other.
+2.  A FamilyMember must have a relationshipType from the set {partner,
+    son/daughter, brother/sister, nephew/niece, grandson/granddaughter}.
+3.  A PrimaryContact must be a FamilyMember of the corresponding
+    Resident.
+4.  Each Resident can have at most one PrimaryContact.
 
-#### Restrictions, integrity contraints and other derived info:
+### Section B
 
-- **Track Class:**
-  - Stores `name`, `distance`, and `difficulty` (easy, medium, high,
-    very high).
-- **Tournament Class:**
-  - Stores `name` and `difficulty`.
-  - **Derived Information:** The `difficulty` of a tournament is
-    determined by the highest difficulty of its tracks.
-  - Can have a `previousTournament` and multiple `nextTournaments` to
-    recommend an order of play.
-- **Relationships:**
-  - A `Track` can be part of multiple `Tournaments`.
-  - A `Tournament` consists of exactly four `Tracks`.
-  - A `Tournament` can have a recommended `previousTournament` and
-    multiple `nextTournaments`.
+![Class Diagram](./img/ex4-2.png)
+
+### Key Restrictions:
+
+1.  Each MedicalRecord belongs to exactly one Resident.
+2.  Each MedicalRecordEntry belongs to exactly one MedicalRecord.
+3.  Each Medication is uniquely identified by its officialCode.
+4.  Each HealthcarePersonnel is uniquely identified by their staffID.
+5.  Each Doctor has a unique licenseNumber.
+
+#### Integrity Constraints:
+
+1.  The age in MedicalRecord must be calculated from the Resident’s
+    birthDate.
+2.  A Doctor is a specialized type of HealthcarePersonnel.
+3.  The endDate of a Prescription is mandatory only for non-chronic
+    medications.
+4.  All HealthcarePersonnel who care for a Resident can access their
+    MedicalRecord.
+
+#### Derived Information:
+
+1.  The age of a Resident is derived from their date of birth.
+2.  Whether a medication is chronic or not can be derived from the
+    presence or absence of an endDate in the Prescription.
+3.  The roomType (single or double) can be derived from the number of
+    Residents assigned to a Room.
 
 ## Question 5
 
-![Activity diagram](./img/ex5.png)
-
-### Explanation:
-
-- **User Swimlane:**
-  - **Access Contact Form:** The user accesses the contact form on the
-    website.
-  - **Fill Out Form:** The user fills out the form with the necessary
-    details.
-  - **Submit Form:** The user submits the form, initiating the process.
-  - **Provide Additional Information:** If requested, the user provides
-    additional information to customer support.
-- **Customer Support Swimlane:**
-  - **Receive Request:** Customer support receives the request from the
-    user.
-  - **Analyze Request:** Customer support analyzes the request to
-    determine the next steps.
-  - **Can Resolve Issue?:** Decision point to check if customer support
-    can resolve the issue.
-    - **Yes:** If the issue can be resolved, customer support sends a
-      response to the player, ending the process.
-    - **No:** If the issue cannot be resolved, further steps are taken.
-  - **Need More Information?:** Decision point to check if more
-    information is needed.
-    - **Yes:** Customer support requests additional information from the
-      user.
-    - **No:** The request is forwarded to the technical team.
-  - **Review Request Again:** Customer support reviews the request again
-    after receiving additional information.
-  - **Forward to Technical Team:** If technical support is needed, the
-    request is forwarded to the technical team.
-  - **Inform Player of Status:** Customer support informs the player of
-    the status while the technical team works on the solution.
-  - **Notify Player of Resolution:** Once the technical team resolves
-    the issue, customer support notifies the player.
-- **Technical Support Swimlane:**
-  - **Work on Solution:** The technical team works on resolving the
-    issue.
-  - **Notify Customer Support of Resolution:** Once resolved, the
-    technical team notifies customer support.
+![Activity Diagram](./img/ex5.png)
 
 ## Question 6
 
-![Class diagram](./img/ex6.png)
+> [!NOTE]
+>
+> I used a mermaid.js editor in this exercise
 
-### Explanation and Constraints:
+![Class Diagram](./img/ex6.png)
 
-- **Player Class:**
-  - Players can participate in multiple races, but not at the same date
-    and time.
-  - Players must unlock a kart before using it in a race.
-- **Kart Class:**
-  - Each kart is linked to a single character.
-  - A kart can only be used in a race if it is unlocked by the player.
-- **Character Class:**
-  - Each character has a unique name and avatar.
-  - No character can appear multiple times as a racer in a single race.
-- **Track and Tournament Classes:**
-  - A race is associated with either a track or a tournament, but never
-    both.
-- **Race Class:**
-  - Stores the `dateTime` of the race and whether it is `isOnline`.
-  - Method `addParticipant(Player, Kart)` to add participants to the
-    race.
-  - A race can have between 1 and 8 karts and characters, ensuring no
-    character appears more than once.
-- **OfflineRace Class:**
-  - Inherits from `Race`.
-  - Includes 7 AI-controlled karts.
-- **OnlineRace Class:**
-  - Inherits from `Race`.
-  - Includes between 4 and 8 human players as participants.
+### Key Constraints:
 
-### Key Constraints and Derived Information:
+1.  Songs are uniquely identified by their alphanumeric ID.
+2.  Artists and Music Groups are uniquely identified by their
+    alphanumeric ID.
+3.  Albums are uniquely identified by their alphanumeric ID.
+4.  Users are uniquely identified by their username.
+5.  Playlists are uniquely identified by their ID.
 
-1.  **Unique Character Constraint:** No character can appear multiple
-    times in a race. Since each kart is linked to a single character,
-    this ensures that no two karts of the same character are used in the
-    same race.
+### Integrity Constraints:
 
-2.  **Race Participation Constraint:** A player cannot participate in
-    multiple races scheduled at the same date and time.
+1.  **Music Group Constraint**: A music group must have at least two
+    artists as members.
+2.  **Group Membership Consistency**: For any artist in a group, the
+    join date must be provided. If the leave date exists, it must be
+    after the join date.
+3.  **Song Creators**: Each song must have at least one composer
+    (artist) and at least one performer (artist or music group).
+4.  **Album Organization**: Every song must belong to exactly one album.
+    No standalone songs are allowed.
+5.  **Album Ownership**: An album must belong to either an artist or a
+    music group, but not both.
+6.  **Genre Limitation**: Album genre must be one of the predefined
+    values: Rock, Pop, Classical, Jazz, Blues, Flamenco, or Other.
+7.  **Playlist Creator**: Each playlist must have exactly one creator
+    (owner).
+8.  **Purchase Consistency**: A purchase must include either a song or
+    an album, but not both simultaneously.
+9.  **Password Security**: User passwords must be stored securely
+    (hashed and salted).
 
-3.  **Kart Unlocking Constraint:** A player must unlock a kart before
-    using it in any race.
+### Derived Information:
 
-4.  **Race Association Constraint:** A race is associated with either a
-    track or a tournament, but not both.
-
-5.  **Participant Count Constraint:**
-
-    - Offline races include 1 player and 7 AI karts.
-    - Online races include between 4 and 8 human players.
+1.  **Album Total Duration**: The total duration of an album is
+    calculated by summing the durations of all songs it contains.
+    - Calculation: `sum(song.durationInSeconds)` for all songs in the
+      album.
+2.  **Playlist Duration**: The total duration of a playlist can be
+    calculated by summing the durations of all songs it contains.
+    - Calculation: `sum(song.durationInSeconds)` for all songs in the
+      playlist.
+3.  **Active Group Members**: Current members of a music group can be
+    derived by filtering group memberships where leave date is null.
+    - Calculation: Select all artists from GroupMembership where the
+      leaveDate is null for a specific group.
+4.  **Artist’s Discography**: The complete collection of albums an
+    artist has created (solo or with groups) can be derived.
+    - Calculation: Union of albums directly created by the artist and
+      albums created by groups the artist was a member of during the
+      album’s release year.
+5.  **Shared Playlists**: For a user, the list of playlists shared with
+    them can be derived from the access relationships.
+    - Calculation: Select all playlists where the user has access but is
+      not the creator.
