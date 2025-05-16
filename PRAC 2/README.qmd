@@ -37,11 +37,11 @@ format:
 
 ## Self-Responsibility Declaration
 
-> I understand that plagiarism, the use of AI or other generated content will imply that the
-delivered work will not be reviewed and it will be automatically assigned a grade of D.
-I certify that I have completed the PRAC2 individually and only with the help that the
-professors of this subject considered appropriate, according to the FAQs about
-plagiarism.
+> I certify that I have carried out Practice 2 completely individually and only with the help that the
+teaching staff of this subject considers appropriate, according to the instructions explained in the
+“Originality in the evaluation” section of the classroom. I understand that non-original work and/or the
+use of generative AI will mean that the submitted activity will not be corrected and will automatically
+be assigned a grade of 0.
 
 {{< pagebreak >}}
 
@@ -51,13 +51,20 @@ plagiarism.
 
 ## Question 2
 
-### Additional Use Cases from Interviews:
+### Additional User-Level Use Cases
 
-*   **Neighbour:** *Submit a Proposal* -  This use case allows a Neighbour to submit a proposal for discussion or voting to the community.  This functionality is mentioned by Juanma as a way to handle issues too complex for the online forum. 
-*   **President:** *Change Community President* -  Ariadne specifically mentions the need to change the community president in the application, especially for communities with rotating presidents.
-*   **Property Manager:** *Generate Community Financial Reports* - Juanma highlights the need for professional property managers to have access to financial data and reports.  This use case addresses that need.
-*   **Director:** There is no mention of a "Director" role in the provided interview transcripts.  It's impossible to define a relevant use case without understanding this role's responsibilities. 
-*   **Anonymous User:**  *View Public Community Information* - While Juanma emphasizes data protection, it is plausible that some community information, such as meeting dates or public announcements, could be accessible to anonymous users to promote transparency. 
+1.  **As a wedding planner, I want to be able to add events to a virtual board so that the couple can have an overview of how their wedding will be.**
+    *   Derived use case: **As a spouse, I want to view the virtual event board.**
+
+2.  **As a service provider, I want to be able to publish my services in the corresponding category so that both wedding planners and couples can hire them.**
+    *   Derived use case: **As a wedding planner, I want to search for service providers by category.**
+    *(Alternatively: As a spouse, I want to browse services offered by providers.)*
+
+3.  **As a spouse, I want to be able to send messages to the wedding planner to communicate with them directly.**
+    *   Derived use case: **As a wedding planner, I want to receive and view messages from spouses.**
+
+4.  **As a guest, I want to be able to confirm my attendance at the wedding through the application so that they can count on our attendance.**
+    *   Derived use case: **As a wedding planner, I want to view the guest attendance status.**
 
 ### UML Use Case Diagram:
 
@@ -66,279 +73,260 @@ plagiarism.
 ## Question 3
 
 ![Class Diagram](./img/q3.png)
-   
-**Keys:**  
-   
-- **User**: `email` (Primary Key, unique across all users)  
-- **Neighbour**: Inherits `email` from `User`  
-- **PropertyManager**: Inherits `email` from `User`  
-- **Community**: `communityID` (Primary Key, unique identifier)  
-- **Presidency**: `presidencyID` (Primary Key, unique for each presidency)  
-- **Calendar**: `calendarID` (Primary Key, unique for each calendar)  
-- **Event**: `eventID` (Primary Key, unique for each event)  
-- **Subscription**: Composite key of `email` and `eventID` (each subscription is unique per user-event pair)  
-- **Statutes**: Associated with `communityID` (one set of statutes per community)  
-   
-**Integrity Constraints:**  
-   
-1. **Unique Email**: The `email` attribute must be unique for each `User` in the system.  
-   
-2. **Neighbour Constraints**:  
-   - A `Neighbour` must belong to one and only one `Community` (`Neighbour.communityID` is a mandatory foreign key to `Community.communityID`).  
-   - `floorNumber` and `doorNumber` are optional attributes.  
-   - `livesPermanently` is a boolean indicating if the neighbour permanently resides in the property.  
-   - `inArrears` is a boolean indicating if the neighbour is behind on payments.  
-   
-3. **President Constraints**:  
-   - A `Neighbour` must have `livesPermanently` set to `true` to become a `President`.  
-   - The application must prevent a neighbour from becoming president if they do not live permanently in the building.  
-   - `Presidency` records link `Neighbour` and `Community` with `startDate` and `endDate` to store the history of presidents.  
-   - At any given time, there can be at most one active presidency (`endDate` is `null`) per `Community`.  
-   
-4. **Community Constraints**:  
-   - **Address**:  
-     - At least one address (`address1StreetName`, `address1PostalCode`, `address1City`) must be provided.  
-     - If a second address is provided (`address2StreetName`, etc.), it must be different from the first address.  
-   - `typeOfBuilding` must be either "horizontal" or "vertical".  
-   - A `Community` may optionally have a `PropertyManager`.  
-   
-5. **PropertyManager Constraints**:  
-   - A `PropertyManager` can manage multiple `Communities`.  
-   - If a `Community` has a `PropertyManager`, it must be linked appropriately.  
-   
-6. **Calendar and Events Constraints**:  
-   - Each `Community` has one `Calendar`.  
-   - The `Calendar` contains multiple `Events`.  
-   - All users (`Neighbours` and `PropertyManagers`) linked to a `Community` can subscribe to `Events`.  
-   - The number of events in a `Calendar` is a derived attribute calculated from the count of `Events` associated with it.  
-   
-7. **Subscription Constraints**:  
-   - A `User` can subscribe to multiple `Events`.  
-   - An `Event` can have multiple `Users` subscribed to it.  
-   - The `Subscription` relationship ensures that users receive notifications about events they are interested in.  
-   
-8. **Statutes Constraints**:  
-   - A `Community` may optionally have `Statutes`.  
-   - If `Statutes` are present, they must include `content` and `lastEditDate`.  
-   - Only one set of `Statutes` per `Community`.  
-   
-9. **General Constraints**:  
-   - When adding an address, mandatory fields are `streetName`, `postalCode`, and `city`.  
-   - The `endDate` in `Presidency` is optional and is set when a presidency ends.  
-   - All data must comply with data integrity and validation rules (e.g., dates should be valid, boolean values properly set).  
-   
-**Derived Information:**  
-   
-- **Number of Events in a Calendar**: The `numberOfEvents` attribute in `Calendar` is derived by counting the total number of `Events` linked to that `Calendar`.  
-   
+
+**Domain Classes and Keys:**
+
+1.  **User**
+    *   **Primary Key (PK):** `userId` (A system-generated unique identifier for each user).
+    *   **Unique Key (UK):** `email` (The problem states email must be unique for each user).
+
+2.  **Wedding**
+    *   **Primary Key (PK):** `weddingId` (A system-generated unique identifier for each wedding).
+    *   **Foreign Key (FK):** `plannerUserId` (references `User.userId` to identify the wedding planner who created the wedding).
+
+3.  **WeddingLink**
+    *   **Primary Key (PK):** `linkId` (A system-generated unique identifier for each link).
+    *   **Foreign Key (FK):** `weddingId` (references `Wedding.weddingId` to associate the link with a specific wedding).
+    *   **Attributes:** `URL`, `recipientEmail`, `sendingDateTime`, `linkType` (Enumerated: 'SPOUSE', 'GUEST').
+
+4.  **WeddingSpouse** (This class links a User to a Wedding as a spouse)
+    *   **Composite Primary Key (PK):** (`weddingId`, `userId`)
+        *   `weddingId` (FK to `Wedding.weddingId`)
+        *   `userId` (FK to `User.userId`)
+    *   **Foreign Key (FK):** `registeredViaLinkId` (references `WeddingLink.linkId`, indicating the specific spouse link used for registration).
+    *   **Attributes:** `confirmationDate`.
+
+5.  **WeddingGuest** (This class links a User to a Wedding as a guest)
+    *   **Composite Primary Key (PK):** (`weddingId`, `userId`)
+        *   `weddingId` (FK to `Wedding.weddingId`)
+        *   `userId` (FK to `User.userId`)
+    *   **Foreign Key (FK):** `registeredViaLinkId` (references `WeddingLink.linkId`, indicating the specific guest invitation link used for registration).
+    *   **Attributes:** `acceptanceDate` (nullable), `rejectionDate` (nullable).
+
+6.  **WeddingPlannerInfo** (This class stores information specific to a User acting as a Wedding Planner)
+    *   **Primary Key (PK) & Foreign Key (FK):** `userId` (references `User.userId`).
+    *   **Attributes:** `weddingsCreatedCount`.
+
+**Textual Integrity Constraints:**
+
+1.  **User Email Uniqueness:** The `email` attribute in the `User` class must be unique across all user records.
+2.  **Spouse Links per Wedding:** For each `Wedding` record, there must be exactly two `WeddingLink` records where `linkType` is 'SPOUSE'.
+3.  **Guest Link Generation Condition:** `WeddingLink` records with `linkType = 'GUEST'` for a specific wedding are only sent (or made active) once both `WeddingSpouse` entries for that `Wedding` have their `confirmationDate` set.
+4.  **Spouse Confirmation:** The `confirmationDate` in the `WeddingSpouse` table is set when the specific user (spouse) accesses the system for the first time via their designated 'SPOUSE' `WeddingLink` and confirms the wedding details.
+5.  **Guest Invitation Response:** For each `WeddingGuest` entry:
+    *   If `acceptanceDate` is set, `rejectionDate` must be null.
+    *   If `rejectionDate` is set, `acceptanceDate` must be null.
+    *   It's possible for both to be null if the guest has not yet responded.
+6.  **Link Registration:**
+    *   Each `WeddingSpouse` record must have a `registeredViaLinkId` that references a `WeddingLink` record with `linkType = 'SPOUSE'` and the corresponding `weddingId`.
+    *   Each `WeddingGuest` record must have a `registeredViaLinkId` that references a `WeddingLink` record with `linkType = 'GUEST'` and the corresponding `weddingId`.
+7.  **User Role Flexibility:** A `User` can simultaneously:
+    *   Be associated with a `WeddingPlannerInfo` record (if they are a wedding planner).
+    *   Be associated with multiple `WeddingSpouse` records (being a spouse in multiple different weddings).
+    *   Be associated with multiple `WeddingGuest` records (being a guest at multiple different weddings).
+8.  **Wedding Planner Association:** Each `Wedding` must have a `plannerUserId` that validly references a `User` who is designated or can act as a wedding planner (implicitly, this user might have an entry in `WeddingPlannerInfo`, or the system might check a role flag on the User model if `WeddingPlannerInfo` wasn't used for other planner-specific data).
+9.  **Direct Access from Wedding to Spouses/Guests:**
+    *   The system must allow querying from a `Wedding` to retrieve all associated `User` records linked through `WeddingSpouse` (the spouses of that wedding).
+    *   The system must allow querying from a `Wedding` to retrieve all associated `User` records linked through `WeddingGuest` (the guests of that wedding).
+10. **WeddingSpouse Cardinality:** Each `Wedding` is associated with exactly two `WeddingSpouse` entries (and thus two users acting as spouses for that wedding).
+
+**Derived Information:**
+
+1.  **`WeddingPlannerInfo.weddingsCreatedCount`:** This integer value is derived. It is the count of all `Wedding` records where the `Wedding.plannerUserId` matches the `WeddingPlannerInfo.userId`. This count should be updated whenever a wedding planner creates a new wedding. 
+
 ## Question 4
 
-![Class Diagram](./img/q4.png)
+Examining Feature Expansion
 
-**Keys:**  
-   
-- **User**: `email` (Primary Key)  
-- **Neighbour**: Inherits `email` from **User**  
-- **President**: Inherits `email` from **Neighbour**  
-- **PropertyManager**: Inherits `email` from **User**  
-- **Community**: `communityID` (Primary Key)  
-- **Vote**: `voteID` (Primary Key)  
-- **PossibleAnswer**: Composite Primary Key (`possibleAnswerID`, `voteID`)  
-- **VoteParticipation**: Composite Primary Key (`voteID`, `neighbourEmail`)  
-- **Delegation**: `neighbourEmail` (Primary Key)  
-   
-**Integrity Constraints:**  
-   
-1. **Vote Creation:**  
-    - A `Vote` must be associated with one `Community` (`Vote` → `Community`).  
-    - A `Vote` is created by either a `President` or a `PropertyManager` (`Creator` interface).  
-    - The creator must be associated with the same `Community` where the `Vote` is being held.  
-   
-2. **Possible Answers:**  
-    - Each `Vote` must have at least **two** `PossibleAnswers`.  
-    - Each `PossibleAnswer` is associated with one `Vote`.  
-   
-3. **Voting Eligibility:**  
-    - Only `Neighbours` who are **not in arrears** (`inArrears = False`) can participate in votes.  
-    - `President` can participate in votes if they are not in arrears (since they are also a `Neighbour`).  
-    - Only `Neighbours` belonging to the specific `Community` can participate in its `Votes`.  
-   
-4. **VoteParticipation:**  
-    - Records the `votingDate`, which must be within the `Vote`'s `startDate` and `endDate`.  
-    - Each `VoteParticipation` links a `Neighbour` to a `Vote`, recording their selected `PossibleAnswer`.  
-    - A `Neighbour` can participate in a `Vote` only once; enforced by the composite primary key (`voteID`, `neighbourEmail`).  
-   
-5. **Delegation:**  
-    - Only `Neighbours` who **do not reside permanently** in their property (`livesPermanently = False`) can delegate their votes.  
-    - Delegation is from a `Neighbour` to the `President` of their `Community`.  
-    - Delegation is valid from `startDate` to an optional `endDate`. If `endDate` is not set, the delegation is considered ongoing.  
-    - During the delegation period, the `Neighbour` cannot cast votes themselves; the `President` votes on their behalf.  
-   
-6. **Derived Information:**  
-    - **Number of Votes** for a `Vote` is calculated by counting the associated `VoteParticipation` entries.  
-    - **Most Voted Answer(s)** are determined by tallying the `PossibleAnswer` selections in `VoteParticipation` records. In case of ties, multiple answers may be the most voted.  
-   
-7. **Constraints on Dates:**  
-    - `Vote.startDate` and `Vote.endDate` must be valid dates with `startDate` before `endDate`.  
-    - `VoteParticipation.votingDate` must be between the `Vote`'s `startDate` and `endDate`.  
-   
-8. **Constraints on Delegation:**  
-    - A `Neighbour` cannot delegate their vote if they reside permanently (`livesPermanently = True`).  
-    - A `Neighbour` can only delegate their vote to the `President` of their own `Community`.  
-    - The `Delegation` must not have overlapping delegation periods for the same `Neighbour`.  
-   
-9. **Constraints on Voting:**  
-    - The system must prevent a `Neighbour` from voting if they have an active delegation.  
-    - A `Neighbour` cannot vote if they are in arrears.  
-   
-10. **Multiplicity Constraints:**  
-    - Each `Vote` must have at least **two** `PossibleAnswers` (Multiplicity `2..*`).  
-    - A `Neighbour` can have at most **one** active `Delegation`.  
-   
-11. **Data Integrity:**  
-    - All foreign keys must reference existing records (e.g., `voteID` in `VoteParticipation` must exist in `Vote`).  
-    - The `President` must be associated with the same `Community` as the `Neighbour` in `Delegation`.  
-    - The selected `PossibleAnswer` in `VoteParticipation` must be one of the possible answers for that `Vote`.  
-   
-**Derived Information Calculations:**  
-   
-- **Number of Votes for a Vote:**  
-    - Count the number of `VoteParticipation` records associated with that `Vote`.  
-   
-- **Most Voted Answer(s):**  
-    - For each `PossibleAnswer`, count the number of times it was selected in `VoteParticipation`.  
-    - The answer(s) with the highest count are the most voted. In the case of equal counts, multiple answers can be the most voted.  
-   
-**Changes from Previous Classes:**  
-   
-- **Classes Reused:** `User`, `Neighbour`, `President`, `PropertyManager`, and `Community` are included from previous exercises.  
-- **No Attribute Changes:** The attributes from the previous classes remain unchanged for this diagram.  
-- **Additional Associations:** New associations have been added to connect these classes to the voting system entities (`Vote`, `PossibleAnswer`, `VoteParticipation`, `Delegation`).  
+Okay, so I'm adding a "virtual wedding board." First, I need to nail down the new classes. I've got `VirtualBoard`, `BoardContent` (and specializations), `Message`, and `EventStateTransition`. Now I need to figure out their attributes and how they relate to what I've already defined.
+
+
+### Listing Class Relationships
+
+Okay, I've got the new classes and their core attributes down. Now I need to map the relationships between them. `VirtualBoard` is linked to `Wedding`, and `BoardContent` links to `VirtualBoard`. `Announcement` and `Event` are specializations of `BoardContent`. Then, there are `Message` to `Event` and `Message` (self-referential for threading) and `EventStateTransition` to `Event` and `User`.
+
+
+### Defining Derived Information
+
+Okay, I've got the relationships and key attributes sorted. Next, I need to figure out what information can be derived from the new model. For example, the number of messages per event, or the overall status of the wedding based on the event states.
+
+
+## Defining New Attributes
+
+Okay, I've detailed the attributes for each new class, including foreign keys and the necessary constraints.  I'm focusing on the integrity constraints to keep the data clean. Now, I can start thinking about the Mermaid.js diagram.
+
+
+### Finalizing Attribute Details
+
+I've reviewed the new attributes and key constraints, including foreign keys and enums. I've also thought through derived information, like the board name and the default announcement order. Now, it's time to update the Mermaid.js diagram, reflecting the changes and any additions.
+
+
+Thinking Over Implementation Details
+
+Okay, I've got all the classes, attributes, relationships, and constraints outlined. I've also identified the derived information and the necessary changes to the existing model. Now I need to make a quick run through the constraints again.
+
+
+Refining Details & Constraints
+
+I've reviewed the attributes and constraints, especially the relationship between announcements and weddings. The plan is to make `BoardContent` an abstract class. The diagram and data integrity are now the primary concerns. Now, I will define the Mermaid.js diagram.
+
+
+### Reconsidering Implementation Details
+
+I'm re-examining the relationships to ensure they're correctly represented in the diagram. Also, thinking through the implications of using an abstract `BoardContent` class.
+
+
+Reflecting & Re-examining
+
+I'm still going through the attribute details and constraints. I want to ensure the relationships are clear and that the data integrity is maintained, including the inheritance. I'll keep the `BoardContent` abstract, and update the diagram accordingly.
+
+
+Okay, let's extend the model to include the virtual wedding board, announcements, and events.
+
+**a) UML Class Diagram**
+
+Here is the updated UML class diagram incorporating the new features.
+
+**Changes compared to the last exercise:**
+
+*   The classes defined in the previous exercise (`User`, `Wedding`, `WeddingLink`, `WeddingSpouse`, `WeddingGuest`, `WeddingPlannerInfo`) are all retained as the foundation.
+*   **New Classes Added:**
+    *   `VirtualBoard`: Represents the wedding board itself.
+    *   `BoardContent`: An abstract base class for items on the board.
+    *   `Announcement`: A specific type of board content for textual announcements.
+    *   `Event`: A specific type of board content for wedding-related events.
+    *   `Message`: Represents messages in the discussion thread of an event.
+    *   `EventStateTransition`: Records the history of states an event goes through.
+*   **New Relationships:** These new classes are linked to each other and to existing classes like `Wedding` and `User`. For instance, a `Wedding` now has one `VirtualBoard`, and `User`s can create `Announcement`s and `Message`s.
+
+![UML Class Diagram](./img/q4.png)
+
+**b) Keys of the domain classes and other textual integrity constraints**
+
+**Keys for New Domain Classes:**
+
+1.  **VirtualBoard**
+    *   **Primary Key (PK):** `boardId` (Unique identifier for the board).
+    *   **Foreign Key (FK) & Unique Key (UK):** `weddingId` (references `Wedding.weddingId`, ensuring one board per wedding).
+
+2.  **BoardContent** (Abstract class, keys apply to its concrete specializations)
+    *   **Primary Key (PK):** `contentId` (Unique identifier for any piece of board content).
+    *   **Foreign Key (FK):** `boardId` (references `VirtualBoard.boardId`).
+
+3.  **Announcement** (inherits `contentId` as PK and `boardId` as FK from `BoardContent`)
+    *   **Foreign Key (FK):** `creatorUserId` (references `User.userId`).
+    *   **Foreign Key (FK):** `previousAnnouncementId` (nullable, references `Announcement.contentId` of the preceding announcement).
+    *   **Foreign Key (FK):** `nextAnnouncementId` (nullable, references `Announcement.contentId` of the subsequent announcement).
+
+4.  **Event** (inherits `contentId` as PK and `boardId` as FK from `BoardContent`)
+    *   No additional explicit foreign keys in the class itself besides those inherited, but it's linked to `Message` and `EventStateTransition`.
+
+5.  **Message**
+    *   **Primary Key (PK):** `messageId` (Unique identifier for the message).
+    *   **Foreign Key (FK):** `eventId` (references `Event.contentId`).
+    *   **Foreign Key (FK):** `authorUserId` (references `User.userId`).
+    *   **Foreign Key (FK):** `repliedToMessageId` (nullable, references `Message.messageId` for threaded replies).
+
+6.  **EventStateTransition**
+    *   **Primary Key (PK):** `transitionId` (Unique identifier for the state change record).
+    *   **Foreign Key (FK):** `eventId` (references `Event.contentId`).
+
+**Textual Integrity Constraints (for new features):**
+
+1.  **VirtualBoard Creation:** A `VirtualBoard` is created when a `Wedding` is created. There is a one-to-one relationship between `Wedding` and `VirtualBoard`.
+2.  **VirtualBoard Name:** The `VirtualBoard.name` attribute always takes the same value as the `Wedding.name` of the associated wedding at the time of board creation.
+3.  **Announcement Creator:** The `creatorUserId` for an `Announcement` must be a `User` directly related to the `Wedding` (i.e., the wedding planner, one of the spouses, or an accepted guest associated with the `VirtualBoard`'s `weddingId`).
+4.  **Announcement Order:**
+    *   Announcements have a specific order. `previousAnnouncementId` and `nextAnnouncementId` manage this doubly linked list.
+    *   For the first announcement on a board, `previousAnnouncementId` is null.
+    *   For the last announcement on a board, `nextAnnouncementId` is null.
+    *   A new `Announcement` is, by default, added as the last in the order (its `previousAnnouncementId` points to the formerly last announcement, and its `nextAnnouncementId` is null; the formerly last announcement's `nextAnnouncementId` is updated).
+5.  **Event States:**
+    *   `Event.currentState` must be one of 'PROPOSED', 'ACCEPTED', or 'REJECTED'.
+    *   `Event.acceptanceDate` can only be set if `currentState` is 'ACCEPTED'. If set, `rejectionReason` must be null.
+    *   `Event.rejectionReason` can only be set if `currentState` is 'REJECTED'. If set, `acceptanceDate` must be null.
+6.  **Message Author:** The `authorUserId` for a `Message` associated with an `Event` can only be one of the spouses involved in the `Wedding` or the `WeddingPlannerInfo.userId` who created the `Wedding` (essentially, the wedding planner or the spouses of the wedding to which the event belongs).
+7.  **Message Reply:** `Message.repliedToMessageId`, if not null, must reference a valid `Message.messageId` belonging to the same `Event`.
+8.  **Event State Transition History:**
+    *   For each `Event`, there will be one or more `EventStateTransition` records.
+    *   The `state` in `EventStateTransition` must be one of 'PROPOSED', 'ACCEPTED', or 'REJECTED'.
+    *   The `EventStateTransition` records for a given event must be ordered (e.g., by `transitionDateTime` or an `orderIndex`) to reflect the sequence in which states occurred.
+    *   The first state transition for any event will be to 'PROPOSED'.
+9.  **Board Content Visibility:** The `isVisibleToGuests` flag on `BoardContent` (and thus on `Announcement` and `Event`) determines if general guests can see that item.
+
+**Derived Information (for new features):**
+
+1.  **`Event.currentState`**: While stored explicitly for direct access, this value is also inherently the `state` of the most recent `EventStateTransition` record (based on `transitionDateTime` or `orderIndex`) for that particular `Event`.
+2.  **Order of Announcements (Implicit):** The position of an announcement (e.g., "3rd announcement") is derived by traversing the linked list (`previousAnnouncementId`/`nextAnnouncementId`) or by its `orderIndex` if that approach was chosen (the diagram uses linked list fields). The "last in order" for a new announcement is derived by finding the current announcement with a null `nextAnnouncementId`.
 
 ## Question 5
 
+**a) UML Class Diagram of the Analysis Model**
+
+**Changes compared to the last exercise:**
+
+*   The classes defined in previous exercises (like `User`, `Wedding`, `Event`, etc.) are considered part of the overall model, but for this diagram, we will only explicitly detail the *new* classes and show connections to relevant existing classes (`User`, `Event`) without restating all their previous attributes, as per your request.
+*   **New User Role:** `ProviderManager` is introduced as a specific type of user. Similar to `WeddingPlannerInfo`, we can model this as `ProviderManagerInfo` linked to the `User` class.
+*   **New Core Classes Added:**
+    *   `Provider`: Represents the service provider company/entity.
+    *   `Category`: Represents categories for providers and services.
+    *   `Service`: Represents a specific service offered by a provider.
+    *   `ServiceContract`: Represents the agreement when a service is hired for a wedding event.
+*   **New Join Table:**
+    *   `ProviderCategory`: To manage the many-to-many relationship between `Provider` and `Category`.
+*   **New Relationships:** These new classes are interrelated and also connect to existing classes like `User` (for Provider Managers) and `Event` (for which services are contracted).
+
 ![Class Diagram](./img/q5.png)
 
-**Keys of Domain Classes:**  
-   
-1. **Community**  
-   - `communityID` (Primary Key)  
-   
-2. **Neighbour**  
-   - `email` (Primary Key)  
-   
-3. **Presidency**  
-   - `presidencyID` (Primary Key)  
-   - `presidentEmail` (Foreign Key to Neighbour)  
-   - `communityID` (Foreign Key to Community)  
-   
-4. **Fee**  
-   - `feeID` (Primary Key)  
-   - `communityID` (Foreign Key to Community)  
-   - `approvedByPresidencyID` (Foreign Key to Presidency)  
-   
-5. **FeeAmount**  
-   - Composite Key: (`feeID`, `neighborEmail`) (Foreign Keys to Fee and Neighbour)  
-   - Attributes:  
-     - `amount`  
-   
-6. **PaymentMethod** (Abstract Class)  
-   - `paymentMethodID` (Primary Key)  
-   - `neighborEmail` (Foreign Key to Neighbour)  
-   - `type` ("DirectDebit" or "SmartphonePayment")  
-   
-7. **DirectDebitPaymentMethod** (Subclass of PaymentMethod)  
-   - Inherits `paymentMethodID`  
-   - Attributes:  
-     - `IBAN` (Unique across all PaymentMethods)  
-     - `accountHolderName`  
-   
-8. **SmartphonePaymentMethod** (Subclass of PaymentMethod)  
-   - Inherits `paymentMethodID`  
-   - Attributes:  
-     - `provider` ("Google" or "Apple")  
-     - `cardNumber` (Unique across all PaymentMethods)  
-     - `cardHolderName`  
-     - `expirationDate`  
-     - `CVV`  
-   
-9. **PaymentMethodSelection**  
-   - Composite Key: (`feeID`, `neighborEmail`)  
-   - Attributes:  
-     - `paymentMethodID` (Foreign Key to PaymentMethod)  
-   
-10. **Payment**  
-    - `paymentID` (Primary Key)  
-    - Attributes:  
-      - `transactionIdentifier`  
-      - `paymentDate`  
-      - `feeID` (Foreign Key to Fee)  
-      - `neighborEmail` (Foreign Key to Neighbour)  
-      - `paymentMethodID` (Foreign Key to PaymentMethod)  
-      - `amount`  
-   
-**Integrity Constraints and Business Rules:**  
-   
-1. **Fee Constraints:**  
-   - `frequency` must be one of "monthly", "quarterly", "semi-annual", or "annual".  
-   - A **Fee** must be associated with one **Community**.  
-   - The `approvalDate` must be set when the **Fee** is approved.  
-   - `approvedByPresidencyID` must reference a **Presidency** whose term includes the `approvalDate`.  
-   - The **Presidency** must be associated with the same **Community** as the **Fee**.  
-   
-2. **FeeAmount Constraints:**  
-   - Each **FeeAmount** links a **Neighbour** to a **Fee** and specifies the `amount` they need to pay.  
-   - The `amount` must be greater than zero.  
-   - One **FeeAmount** per **Neighbour** per **Fee**.  
-   
-3. **PaymentMethod Constraints:**  
-   - **PaymentMethod** is associated with one **Neighbour**.  
-   - The `IBAN` in **DirectDebitPaymentMethod** must be unique across all payment methods.  
-   - The `cardNumber` in **SmartphonePaymentMethod** must be unique across all payment methods.  
-   - For **DirectDebitPaymentMethod**, `IBAN` and `accountHolderName` cannot be null.  
-   - For **SmartphonePaymentMethod**, `provider`, `cardNumber`, `cardHolderName`, `expirationDate`, and `CVV` cannot be null.  
-   - The `provider` must be either "Google" or "Apple".  
-   
-4. **PaymentMethodSelection Constraints:**  
-   - Each **PaymentMethodSelection** specifies the `paymentMethodID` for a **Neighbour** for a specific **Fee**.  
-   - The `paymentMethodID` must belong to the same **Neighbour** as specified in `neighborEmail`.  
-   - One **PaymentMethodSelection** per **Neighbour** per **Fee**.  
-   
-5. **Payment Constraints:**  
-   - Each **Payment** must reference a valid **Fee**, **Neighbour**, and **PaymentMethod**.  
-   - The `paymentMethodID` must be the one selected in **PaymentMethodSelection** for the corresponding **Fee** and **Neighbour**.  
-   - The `paymentDate` must be after the `approvalDate` of the **Fee**.  
-   - The `amount` in **Payment** should match the `amount` specified in **FeeAmount** for that **Fee** and **Neighbour**.  
-   
-6. **Approval Process Constraints:**  
-   - A **Fee** must be reviewed and approved by the **President** before any payments can be processed.  
-   - The **President** approving the **Fee** must be in office during the `approvalDate`.  
-   
-7. **Uniqueness Constraints:**  
-   - `IBAN` and `cardNumber` must be unique across all payment methods in the system.  
-   - **PaymentMethod** IDs are unique.  
-   - **Payment** IDs are unique.  
-   
-8. **Association Constraints:**  
-   - **Neighbour** belongs to one **Community**.  
-   - **Presidency** is associated with one **Community** and one **President** (**Neighbour**).  
-   - **FeeAmount** must link **Neighbours** that belong to the same **Community** as the **Fee**.  
-   
-9. **Data Integrity Constraints:**  
-   - All date attributes must be valid dates.  
-   - Non-nullable attributes must have valid data.  
-   - Foreign keys must reference existing records.  
-   
-10. **Sequence of Operations:**  
-    - A **Fee** is created and then must be approved by the **President**.  
-    - After approval, each **Neighbour** must select a **PaymentMethod** for the **Fee**.  
-    - Payments can then be made using the selected **PaymentMethod**.  
-   
-**Derived Information:**  
-   
-- **Payment Amount in Payment**:  
-  - The `amount` in **Payment** can be derived from the `amount` specified in **FeeAmount** for the corresponding **Fee** and **Neighbour**.  
-  - Alternatively, it can be stored explicitly to record partial payments or adjustments.  
-   
-- **Approval by President:**  
-  - Although the **Fee** records the `approvedByPresidencyID`, the actual **President** (the **Neighbour**) who approved the **Fee** can be derived from the **Presidency** referenced.  
+**b) Keys of the domain classes and other textual integrity constraints**
+
+**Keys for New Domain Classes:**
+
+1.  **ProviderManagerInfo**
+    *   **Primary Key (PK) & Foreign Key (FK):** `userId` (references `User.userId`).
+    *   **Foreign Key (FK):** `managesProviderId` (references `Provider.providerId`).
+
+2.  **Provider**
+    *   **Primary Key (PK):** `providerId` (Unique identifier for the provider).
+    *   **Unique Key (UK):** `name` (The provider's name must be unique).
+
+3.  **Category**
+    *   **Primary Key (PK):** `categoryId` (Unique identifier for the category).
+    *   **Unique Key (UK):** `name` (The category name must be unique).
+
+4.  **ProviderCategory** (Join table for the many-to-many relationship between Provider and Category)
+    *   **Composite Primary Key (PK):** (`providerId`, `categoryId`)
+        *   `providerId` (FK to `Provider.providerId`)
+        *   `categoryId` (FK to `Category.categoryId`)
+
+5.  **Service**
+    *   **Primary Key (PK):** `serviceId` (Unique identifier for the service).
+    *   **Foreign Key (FK):** `providerId` (references `Provider.providerId`, indicating which provider offers this service).
+    *   **Foreign Key (FK):** `categoryId` (references `Category.categoryId`, indicating the category of this service).
+
+6.  **ServiceContract**
+    *   **Primary Key (PK):** `contractId` (Unique identifier for the service contract).
+    *   **Foreign Key (FK):** `eventId` (references `Event.contentId` from the Virtual Board's Event).
+    *   **Foreign Key (FK):** `serviceId` (references `Service.serviceId`).
+
+**Textual Integrity Constraints (for new features):**
+
+1.  **Provider Manager - Provider Link:** Each `ProviderManagerInfo` record (representing a provider manager user) must be linked to exactly one `Provider` (via `managesProviderId`). A `Provider` can be managed by multiple `ProviderManagerInfo` records.
+2.  **Provider Name Uniqueness:** The `name` of each `Provider` must be unique within the system.
+3.  **Category Name Uniqueness:** The `name` of each `Category` must be unique.
+4.  **Service Category Constraint:** The `Service.categoryId` must reference a `Category` that the `Service.providerId` is also associated with (i.e., there must be a corresponding entry in the `ProviderCategory` table for the service's provider and the service's category).
+5.  **Service Cost Type:** The `Service.costType` must clearly indicate if the `Service.costAmount` is a 'FIXED' cost or a 'PER_PERSON' cost.
+6.  **Service Contract - Number of People:** The `numberOfPeople` in a `ServiceContract` is relevant especially when the `Service.costType` is 'PER_PERSON'.
+7.  **Service Contract - Discount:** The `discountPercentage` in `ServiceContract` is optional. If not provided, it's assumed to be 0.
+
+**Derived Information (for new features):**
+
+1.  **`ServiceContract.calculatedTotalCost` (Float):**
+    *   This value is calculated based on the linked `Service` and the `ServiceContract.numberOfPeople`.
+    *   If `Service.costType` is 'FIXED': `calculatedTotalCost = Service.costAmount`.
+    *   If `Service.costType` is 'PER_PERSON': `calculatedTotalCost = Service.costAmount * ServiceContract.numberOfPeople`.
+
+2.  **`ServiceContract.calculatedFinalCost` (Float):**
+    *   This value is calculated from the `calculatedTotalCost` and the `ServiceContract.discountPercentage`.
+    *   `calculatedFinalCost = calculatedTotalCost - (calculatedTotalCost * (discountPercentage / 100.0))`
+    *   If `discountPercentage` is null or 0, then `calculatedFinalCost = calculatedTotalCost`.
