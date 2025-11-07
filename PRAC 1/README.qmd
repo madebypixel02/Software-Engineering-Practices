@@ -32,147 +32,166 @@ format:
 
 ## Self-Responsibility Declaration
 
-> I certify that I have completed Practice 1 entirely on my own and solely with the assistance deemed appropriate by the course instructors, according to the guidelines explained in the Originality in Assessment section of the classroom.
->
-> I understand that non-original work and/or the use of generative AI will result in the submitted activity not being graded and will automatically receive a score of 0.
+> I certify that I have completed Practice 1 entirely on my own and solely with the assistance
+deemed appropriate by the course instructors, according to the guidelines explained in the
+'Originality in Assessment' section of the classroom.
+I understand that non-original work and/or the use of generative AI will result in the submitted
+activity not being graded and will automatically receive a score of 0.
 
 {{< pagebreak >}}
 
 ## Question 1
 
-Below are three non‐functional requirements identified from the statement:
+### Requirement 1: System Availability
 
-* Requirement 1
-  * Phrase: _I would like the application to have a visual appearance in line with the company's colors and aesthetics..._
-  * Description: The user interface must reflect the company’s brand identity by using its specific colors, design elements, and overall aesthetic, thereby making the application immediately recognizable as a WeddingWorld tool.
-  * Type: *Look and feel requirement*
-  * Stakeholder: *Alba*
+*   **Literal phrase from the text:** "deployed in the cloud to ensure scalability and 99.99% availability, as the platform must produce real-time dat"
+*   **Technical description:** The system's architecture needs to be really robust so it's up and running 99.99% of the time. That’s a high standard, giving us only about 52 minutes of total downtime for the whole year. This is especially important for a system handling real-time sensor data.
+*   **Type of requirement:** This is a **Compliance requirement**, since it sets a specific, measurable target for availability.
+*   **Stakeholder who expressed it:** This was specified by Marc Marquez, the CTO.
 
-* Requirement 2
-  * Phrase: _the application must be available both as a web version and as a mobile app for smartphones (Android and iOS)._
-  * Description: The system has to be developed for multiple platforms, ensuring that it runs consistently on desktop browsers as well as on native mobile devices (Android and iOS), so users can access it in different environments.
-  * Type: *Portability requirement*
-  * Stakeholder: *Pablo*
+### Requirement 2: Platform Accessibility
 
-* Requirement 3
-  * Phrase: _the application should support 1,000 concurrent users under normal conditions but must be able to handle spikes of up to 5,000 concurrent users._
-  * Description: The system must be engineered to maintain acceptable performance under typical usage (1,000 users simultaneously) and be scalable enough to manage significant load increases (up to 5,000 concurrent users) during busy periods.
-  * Type: *Performance/scalability requirement*
-  * Stakeholder: *Estefanía*
+*   **Literal phrase from the text:** "the platform must comply with EN 301 549 accessibility standards (mandatory for ICT services in the public sector in the EU) and WCAG 2.1 (level AA) from W3C."
+*   **Technical description:** We have to build the user interface so that people with different disabilities can still use it without problems. This means following the WCAG 2.1 guidelines to level "AA," which includes things like providing text alternatives for images, ensuring the whole site works with just a keyboard, and using colors with good contrast.
+*   **Type of requirement:** Since the focus is on making the system easy and effective for all users, this falls under **Usability and humanity requirements**.
+*   **Stakeholder who expressed it:** Mireia Ferrater, the COO.
+
+### Requirement 3: Data Accuracy
+
+*   **Literal phrase from the text:** "According to Anna, we must be able to perform these analyses correctly in at least 95% of cases, to predict anomalies (pH changes, invasive species)"
+*   **Technical description:** The AI models analyzing the data and images must be at least 95% accurate. In other words, when the system identifies a species or flags a problem, its prediction has to be correct 19 out of 20 times for it to be considered reliable enough to act on.
+*   **Type of requirement:** This is another **Compliance requirement**, as it establishes a clear, measurable performance metric for the system's output.
+*   **Stakeholder who expressed it:** The CTO, Marc Marquez, brought this up, but he was relaying a need originally identified by Anna Esplugues, the Scientific Director.
 
 ## Question 2
 
-User roles:
+Based on the interviews, here are some actors that would interact with the Ocean Ecostructures platform:
 
-* *Wedding Planner*
-* *Wedding Couple*
-* *Guest*
-* *Service Provider*
+*   **Port Authority**
+*   **Energy Company**
+*   **Public Administration**
+*   **Marine Biologist**
+*   **Institutional Manager**
+*   **Technician**
+*   **Scientist**
+*   **Environmental Technician**
+*   **Communications Department**
 
 ## Question 3
 
-### Functional Requirements in User Story Format
+A primary conflict emerges from the competing visions of the CEO and the Scientific Director.
 
-1. Virtual Event Board
-   * User Story: **As a wedding planner I want a virtual event board to add confirmed wedding events so that couples can easily keep track of the wedding day schedule.**
-   * Phrase: “The first functionality I want to implement is the virtual event board. This is a shared virtual board between the spouses and the wedding planner, where the assigned wedding planner will chronologically add all the confirmed events for the wedding day.”
+On one hand, the CEO, **Ignacio Herrero**, wants the system to be a truly "autonomous intelligence." He pictures a "digital guardian" that can independently take protective action, such as deploying an ultrasound platform to ward off threats like harmful algae, all without waiting for a human to give the okay. His focus is on immediate, automated response to protect the marine environment.
 
-2. Wedding Invitation Process
-   * User Story: **As a wedding planner I want to register weddings and send email invitations to couples so that they can confirm their wedding details.**
-   * Phrase: “The virtual invitation process should work as follows: The responsible wedding planner will access the application and register the wedding. The first step will be to associate both spouses with the newly created wedding. Once linked by the wedding planner, the couple will receive an email with a link allowing them to register and confirm that this is indeed their wedding.”
+On the other hand, the Scientific Director and biologist, **Anna Esplugues**, strongly opposes this whem saying that "all alerts and action suggestions must be sent to a qualified biologist to decide the course of action.". She argues that the risk of the AI making a mistake—a false positive—is too high and could lead to unintended ecological damage. For her, the AI should be a powerful tool for analysis and suggestion, but the final decision to act must always come from a qualified biologist. She insists on mandatory human oversight for every action the system proposes.
 
-3. Public Registration Link for Guests
-   * User Story: **As a couple I want to share a public registration link with guests so that only invited guests can register and be linked to our wedding.**
-   * Phrase: “I would prefer if the wedding within the application had a public link, visible only to us (the couple), which we could share with guests so they can register and link themselves to the wedding through this link. However, before finalizing the linkage, we would validate that the person is indeed an invited guest.”
-
-4. Direct Service Provider Registration
-   * User Story: **As a service provider I want to register and publish my services directly in the application so that I can quickly update details such as pricing and discounts without an intermediary.**
-   * Phrase: “As a provider, I would like to be able to register in the application and publish my services directly, without having to go through an intermediary from Alba’s company.”
-
-### Acceptance Tests for the Example User Story
-
-1. **Upload Process Verification**
-   * Test that when a guest selects the upload option and chooses a valid photo file (e.g., JPEG or PNG), the image is successfully uploaded and immediately displayed in the wedding photo gallery with the correct timestamp and attribution.
-
-2. **File Format and Size Handling**
-   * Test that the system accepts only supported image formats (such as JPEG and PNG) and enforces any file size limits by displaying a clear error message if a guest attempts to upload a file that is in an unsupported format or exceeds the size limit.
-
-3. **User Interface Feedback**
-   * Test that after a successful upload, the application shows a visible progress indicator during the upload process and a confirmation message once the upload is complete, ensuring that the guest is aware that their photo has been added to the gallery.
+This creates a fundamental deadlock. The system cannot be both fully autonomous and simultaneously require mandatory human approval for its actions. The development team is caught between the CEO's desire for a self-managing protector and the lead scientist's demand for a rigorous, human-centered safety protocol. A decision must be made about which philosophy will guide the system's core function.
 
 ## Question 4
 
-A clear conflict arises regarding the commission fee imposed on service providers:
+### Use Case: Analyze Environmental Alert
 
-* Stakeholders involved:
-  * *Alba* (Wedding planner and CEO of WeddingWorld) and *Pablo* (Financial Director) support charging a commission.
-  * *Nuria* (Event Restaurant Manager and service provider) opposes any commission fees.
+*   **Use Case Identifier:** `UC-ANA-01`
 
-* Requirement 1: “Charge a small commission to the provider for acquiring a new client through our platform.”
-  * Alba and Pablo argue that this commission creates an additional revenue stream that helps cover maintenance costs and contributes to the financial sustainability of the application.
+*   **Primary Actor:** Marine Biologist
 
-* Requirement 2: “I would not be in favor of being charged a commission for publishing our services or for being booked through the application.”
-  * Nuria explains that eliminating commission fees would allow providers like her to register and update their service details more directly and efficiently, thereby facilitating quicker service updates and reducing financial burdens on the providers.
+*   **Supporting Actors:**
+    *   AI Analysis Subsystem
+    *   Sensor Network
+    *   Ultrasound Platform
+
+*   **Level:** User Goal. This covers the biologist's primary objective of investigating and responding to a potential ecosystem threat.
+
+*   **Scope:** System. The interaction is contained within the Ocean Ecostructures digital platform.
+
+*   **Main Success Scenario:**
+    1.  The Sensor Network picks up an annomaly, like a sharp drop in pH or video footage of a possible invasive species.
+    2.  An alert is automatically triggered by the platform.
+    3.  The Analysis Subsystem cross-references the relevant sensor and camera data, identifies concerning patterns and generates a report that suggests a course of action (such as "recommmend activating ultrasound deterrent in Sector 4B").
+    4.  The Marine Biologist is notified with a summary of the alert, access to the raw data, and the AI's analysis.
+    5.  The biologist logs in to examine the alert, the underlying data, and the AI's recommendation.
+    6.  After reviewing the information, the biologist concurs with the assessment and the suggested remote intervention.
+    7.  The biologist authorizes the action through the platform's interface to activate the Ultrasound Platform.
+    8.  The platform transmits the activation command.
+    9.  The alert is logged and closed, documenting the entire incident from detection to resolution.
+
+*   **Alternative Scenarios:**
+    *   **3a. False Positive Alert:** the biologist reviews the data and determines there is no real threat.
+        1.  The biologist dismisses the alert.
+        2.  The platform asks for an annotation to explain the dismissal (for example: "Natural temperature fluctuation for this season").
+        3.  This feedback is used to help train the AI model, and the alert is closed.
+
+    *   **6a. Requires On-Site Intervention:** The situation is too complex for a remote fix and needs a person on-site.
+        1.  The biologist chooses the "Requires Field Intervention" option.
+        2.  The platform records this decision and can notify a field team, depending on the system's setup.
+        3.  The alert is re-assigned for on-site action, concluding the biologist's remote analysis.
+
+    *   **6b. Biologist Requests Deeper Analysis:** initial information isn't enough for the biologist to make a confident decision.
+        1.  The biologist uses the platform's tools to run a new analysis, maybe by comparing the current data to historical records or by changing the AI's parameters to test a different theory.
+        2.  The AI Analysis Subsystem performs the requested analysis.
+        3.  The platform displays the new findings for the biologist.
+        4.  With the new results, the process continues from step 5 of the main scenario.
 
 ## Question 5
 
-- **Use Case Identifier:** UC-VWI-01 (Sending Virtual Wedding Invitations)
-- **Actor Principal:** *Wedding Planner* (Alba)
-- **Supporting Actors:**
-  - *Spouses* (Couple)
-  - *Guests*
-- **Level:** *User goal* (high-level functionality that supports the wedding management process)
-- **Scope:** *Wedding Management Application*
-- **Main Stage of Success:**
-  1. The wedding planner accesses the application and creates a new wedding record.
-  2. The wedding planner associates both spouses with the wedding.
-  3. Once associated, each spouse receives an email containing a registration link to confirm that the wedding details are correct.
-  4. After the spouses confirm their registration, the wedding planner inputs the guest list (using the provided and authorized email addresses).
-  5. Guests receive a virtual invitation via email that includes a link to register on the application.
-  6. Interested guests register (if they choose) and confirm their attendance directly within the application.
-  7. The use case completes once the guests’ attendance has been confirmed.
+### a) Use Cases implicitly stated in the interviews
 
-- **Alternative Scenarios:**
-  1. **Spouse Email Error:** If the wedding planner enters an incorrect email address for one or both spouses, the registration email is not received. In this case, the spouses must notify the wedding planner or the planner must verify and re-enter the correct email addresses before resending the invitation.
-  2. **Optional Guest Registration:** Some guests may choose not to register in the application. In these cases, although they still receive the virtual invitation by email, no further confirmation is performed within the app.
-  3. **Guest Declines Invitation:** A guest might register on the application but then actively decline the invitation. This outcome is documented, and the guest is marked as not attending, prompting the wedding planner to follow up or update their list accordingly.
+I've identified two primary goals that users would want to accomplish with the platform.
+
+1.  **Activate an Ultrasound Platform:** Based on Anna Esplugues's comments, a key feature would be for a **Marine Biologist** to remotely trigger an ultrasound device at a specific installation. The idea is that they could respond to a detected threat, like a harmful alge bloom, and protect the local ecosystem without needing to be physically present.
+
+2.  **Download a Communications Infographic:** Following Lucía Becerra's idea, a staff member from a client's **Communications Department** would need to generate and download a ready-made infographic. This would let them easily create visual assets for a municipal website or public report to showcase the project's positive environmental impact.
+
+### b) Proposed Use Cases
+
+Here are two additional use cases that would be useful>
+
+1.  **Configure a New Client Project:** From a system management perspective, an internal **System Administrator** must be able to set up a new project for a client. This is a prerequisite for anything else. The process would involve defining the project's geographic boundaries on a map, associating specific sensor and hardware IDs with that project, and creating the initial admin account for the client's own team.
+
+2.  **Validate AI Species Identification:** To achieve the 95% accuracy goal mentioned by Marc Marquez, the AI models will require ongoing training and supervision. This means a **Marine Biologist** would need a way to validate the AI's findings. The platform could present the biologist with images where the AI's confidence is low. The biologist would then confirm or correct the species tag, which in turn helps the model learn and improve its performance over time.
+
+### c) Task-Level Use Cases for Selected Scenarios
+
+Let's break down two of the broader use cases into the smaller and more granular steps that  a user would take to accomplish the,.
+
+**1. `Download a Communications Infographic` use case:
+
+To generate a report, a communications staffer would likely perform these smaller tasks:
+
+*   **Select an Infographic Template:** First, the user would be presented with several visual styles or layouts ("Annual Summary," "Species Spotlight") and would choose the one that best fits their needs.
+*   **Choose a Time Period for the Data:** Next, they would need to select a start and end date. This defines the data range that will populate the infographic, such as "the last quarter" or a specific calendar year.
+
+**2. `Configure a New Client Project` use case
+
+Similarly, the administrator's workflow for setting up a project would involve steps like these:
+
+*   **Add a User Account to a Project:** Inside the project configuration area, the admin would use a form to enter a new user's details (name, email, role) to grant them access to that specific client's project.
+*   **Link a Sensor to an Installation:** The admin would also need to select some specific installation within the project and enter the unique ID of a physical sensor to associate its incoming data stream with that location.
 
 ## Question 6
 
-### Existing User-Level Use Cases
+### a) Functional Requirements as User Stories
 
-1. **Sending Virtual Wedding Invitations**
-   - Main actor: *Wedding Planner*
-   - Brief Description: The wedding planner creates a new wedding record, associates the spouses, inputs the guest list, and the system automatically sends invitation emails to guests so that they can confirm their attendance.
+Based on the interviews, I've identified several key functional needs and written them as user stories:
 
-2. **Direct Service Provider Registration**
-   - Main actor: *Service Provider*
-   - Brief Description: A service provider registers in the application and publishes his or her services directly, thereby updating information such as pricing and discounts without intermediary intervention.
+*   The interviews stated that “Each client—whether a port, an energy company, or a public administration—must be able to access their digital space, view the status of their installations, consult reports, and receive alerts” This can be expressed as a user story for the client:
+    *   As a **client**, I want to access my personal digital space so that I can monitor the status of my installations, review reports, and manage alerts.
 
-### New User-Level Use Cases Consistent with the Context
+*   Another requirement was for marine biologists to “interact remotely with the ecosystem, such as activating ultrasound platforms to protect certain areas” As a user story, this would be:
+    *   As a **marine biologist**, I want to be able to remotely activate the ultrasound platforms so that I can proactively protect the ecosystem from identified threats.
 
-1. **Manage Wedding Budget**
-   - Main actor: *Couple*
-   - Brief Description: The couple can track and manage all wedding-related expenses, enter cost items, view budget summaries, and adjust allocations, ensuring that they remain within their planned spending.
+*   For public administration, the need to “download consolidated reports from several installations and use them as evidence in a European audit process” leads to this story:
+    *   As a **public administration staff member**, I want to download consolidated reports from multiple installations so that I can use the data as official evidence for sustainability audits.
 
-2. **Manage Service Bookings**
-   - Main actor: *Service Provider*
-   - Brief Description: A service provider can view, confirm, and manage the bookings received through the application, including checking details of each booking and updating availability accordingly.
+*   Finally, the communications team needs to “download an infographic ready to share on the municipal website” The corresponding user story is:
+    *   As a member of a **communications department**, I want to download ready-to-use infographics about the project's impact so that I can easily share positive results with the public.
 
-### Task-Level Use Cases for *a* and *b*
+### b) Acceptance Tests for the Example User Story
 
-**"Sending Virtual Wedding Invitations"** (Main actor: *Wedding Planner*)
+Looking at the user story: *“As an environmental technician I want the platform to automatically generate an annual environmental impact report so that I can evaluate the evolution of biodiversity in the port,”* here are three acceptance tests to make sure it's working correctly.
 
-- **Task-Level Use Case 1:** Create Wedding Record and Associate Spouses
-  - Description: The wedding planner enters wedding details and associates both spouses to the newly created wedding record. This task ensures that the couple receives the registration email to confirm their wedding details.
+1.  **The report must compare the project area to a control area.** When the technician generates the report, it should automatically include a section contrasting the biodiversity metrics (like species count) of the regenerated zone with data from a designated, non-intervened area for the same time frame.
 
-- **Task-Level Use Case 2:** Input Guest List and Initiate invitation Email
-  - Description: The wedding planner inputs the list of guest email addresses, verifies their correctness, and triggers the system to send out virtual invitation emails so that guests can register and confirm their attendance.
+2.  **The system should handle incomplete data gracefully.** If a technician requests a report for a new installation that has only been active for six months, the platform should generate the report covering that specific period and clearly state the time frame, rather than failing or showing blank data.
 
-**"Manage Wedding Budget"** (Main actor: *Couple*)
-
-- **Task-Level Use Case 1:** Record New Expense Item
-  - Description: The couple enters details for a new expense (such as amount, category, and date) into the application, thereby updating their wedding cost records.
-
-- **Task-Level Use Case 2:** View and Update Budget Overview
-  - Description: The couple accesses the current budget summary, reviews expense totals against their planned budget, and makes adjustments to budget allocations if necessary.
+3.  **The final report needs to have clear data visualizations.** It must feature at least one graph or table showing how the main biodiversity indicators have evolved month-over-month, allowing the technician to easily spot trends at a glance.
