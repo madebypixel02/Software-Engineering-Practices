@@ -1,0 +1,72 @@
+---
+title: "CAT 2"
+subtitle: "UML Analysis"
+author: Alejandro Pérez Bueno
+date: today
+date-format: "MMM DD, YYYY"
+toc: true
+toc-title: "Table of Contents"
+linkcolor: blue
+documentclass: report
+link-citations: true
+link-bibliography: true
+format:
+  gfm: default
+  pdf:
+    linestretch: 1.25
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhead[C]{UOC}
+          \fancyhead[R]{aperez-b@uoc.edu}
+          \fancyfoot{}
+          \fancyfoot[C]{\thepage}
+---
+
+{{< pagebreak >}}
+
+## Self-Responsibility Declaration
+
+> I understand that plagiarism, the use of AI or other generated content will imply that the
+delivered work will not be reviewed and it will be automatically assigned a grade of D.
+I certify that I have completed the CAA2 individually and only with the help that the
+professors of this subject considered appropriate, according to the FAQs about
+plagiarism.
+
+{{< pagebreak >}}
+
+## Question 1
+
+### 1)
+
+![UML Class Diagram](./img/ex1-1.png)
+
+
+### 2)
+
+![UML Class Diagram](./img/ex1-2.png)
+
+### 3)
+
+![Activity Diagram](./img/ex1-3.png)
+
+## Question 2
+
+![Visual Paradigm UML Diagram](./img/ex2.png)
+
+## Question 3
+
+![Use Case Diagram](./img/ex3.png)
+
+## Question 4
+
+![Activity Diagram](./img/ex4.png)
+
+## Question 6
+
+![Class Diagram](./img/ex6.png)
